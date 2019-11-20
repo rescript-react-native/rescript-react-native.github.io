@@ -1,0 +1,21 @@
+*.log
+
+# macOS crap
+.DS_Store
+
+# node
+node_modules
+
+# npm unused lock file (we use yarn.lock)
+package-lock.json
+
+# Ocaml / Reason / BuckleScript artifacts
+*.bs.js
+.bsb.lock
+**/lib/bs
+**/lib/ocaml
+**/.merlin
+
+# website build artifacts
+build
+dist
