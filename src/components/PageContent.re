@@ -90,8 +90,7 @@ let make = (~pageData) => {
       None;
     };
   let editHref =
-    "https://github.com/reason-react-native/reason-react-native.github.io/blob/src/"
-    ++ pageData.filename;
+    "https://github.com/reason-react-native/" ++ pageData.filename;
   <SpacedView style=styles##container vertical=SpacedView.L>
     <main>
       <header>
