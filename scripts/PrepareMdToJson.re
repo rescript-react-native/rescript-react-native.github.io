@@ -24,7 +24,7 @@ Path.join([|sourcePath, "**/*.md"|])
           let mdJson = mdToJson(file.content);
           let content =
             {
-              "filename": file.name |> Js.String.replace(root, "website"),
+              "filename": file.name |> Js.String.replace(root, ""),
               "id": mdJson##id,
               "title": mdJson##title,
               "body": mdJson##body,
@@ -150,7 +150,7 @@ Path.join([|sourcePath, "**/*.md"|])
           let mdJson = mdToJson(file.content);
           let content =
             {
-              "filename": file.name |> Js.String.replace(root, "website"),
+              "filename": file.name |> Js.String.replace(root, ""),
               "id": mdJson##id,
               "title": mdJson##title,
               "author": mdJson##author,
