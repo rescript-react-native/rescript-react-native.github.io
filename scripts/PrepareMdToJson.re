@@ -8,6 +8,7 @@ Lowlight.(lowlight->registerLanguage("reason", reason));
 [@bs.module] external mdToJson: string => 'a = "@phenomic/markdown-as-json";
 
 Js.log("Docs pages...");
+
 let sourcePath = Path.join([|root, "docs"|]);
 let outputPath = Path.join([|root, "build", "docs-pages"|]);
 Path.join([|sourcePath, "**/*.md"|])
@@ -24,7 +25,12 @@ Path.join([|sourcePath, "**/*.md"|])
           let mdJson = mdToJson(file.content);
           let content =
             {
-              "filename": file.name |> Js.String.replace(root, ""),
+              "filename":
+                file.name
+                |> Js.String.replace(
+                     root,
+                     "reason-react-native.github.io/blob/src/",
+                   ),
               "id": mdJson##id,
               "title": mdJson##title,
               "body": mdJson##body,
@@ -84,6 +90,10 @@ Path.join([|sourcePath, "**/*.md"|])
                 |> Js.String.replace(
                      Node.Path.resolve(root, "..") ++ "/",
                      "",
+                   )
+                |> Js.String.replace(
+                     "reason-react-native",
+                     "reason-react-native/blob/master",
                    ),
               "id": mdJson##id,
               "title": mdJson##title,
@@ -150,7 +160,12 @@ Path.join([|sourcePath, "**/*.md"|])
           let mdJson = mdToJson(file.content);
           let content =
             {
-              "filename": file.name |> Js.String.replace(root, ""),
+              "filename":
+                file.name
+                |> Js.String.replace(
+                     root,
+                     "reason-react-native.github.io/blob/src/",
+                   ),
               "id": mdJson##id,
               "title": mdJson##title,
               "author": mdJson##author,
