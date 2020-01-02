@@ -33,7 +33,7 @@ When you have correctly
 installed, you can run the following command:
 
 ```console
-npx react-native init MyApp --template reason-react-native-template
+npx react-native init MyApp --template reason
 cd MyApp
 ```
 
