@@ -134,13 +134,13 @@ are unfamiliar with _Android Studio_, you might be interested by
 **In another terminal:**
 
 ```console
-yarn start:ios
+yarn ios
 ```
 
 or
 
 ```console
-yarn start:android
+yarn android
 ```
 
 This commands should open up a virtual device & start React Native
