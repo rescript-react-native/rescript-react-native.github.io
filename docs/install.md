@@ -33,7 +33,7 @@ When you have correctly
 installed, you can run the following command:
 
 ```console
-npx @react-native-community/cli init --template @reason-react-native/template
+npx @react-native-community/cli init --template @reason-react-native/template MyApp
 cd MyApp
 ```
 
