@@ -82,7 +82,7 @@ let make = (~pageData) => {
                || pageData.id
                |> Js.String.startsWith("components/")) {
       Some(
-        "http://facebook.github.io/react-native/docs/"
+        "https://reactnative.dev/docs/"
         ++ pageData.title->Js.String.toLocaleLowerCase
         ++ "/",
       );

@@ -4,7 +4,7 @@ title: Getting Started
 ---
 
 _Reason React Native_ is a safe & simple way to build
-[React Native](http://facebook.github.io/react-native/) apps, in
+[React Native](https://reactnative.dev/) apps, in
 [Reason](http://reasonml.github.io/), using
 [ReasonReact](https://reasonml.github.io/reason-react/).
 
