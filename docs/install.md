@@ -19,7 +19,7 @@ All options will basically help you to have :
 
 Below we assume you are already familiar with React Native. If you are new to
 React Native, please have a quick look to
-[React Native Getting Started documentation](https://facebook.github.io/react-native/docs/getting-started.html)
+[React Native Getting Started documentation](https://reactnative.dev/docs/getting-started.html)
 in order to get the minimal requirements.
 
 ## Create a new project with _Reason React Native_
@@ -29,7 +29,7 @@ choosing this option you will get an hello world project that will already have
 all the requirements included.
 
 When you have correctly
-[`react-native-cli`](http://facebook.github.io/react-native/docs/getting-started#the-react-native-cli)
+[`react-native-cli`](https://reactnative.dev/docs/getting-started#the-react-native-cli)
 installed, you can run the following command:
 
 ```console

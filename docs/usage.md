@@ -149,7 +149,7 @@ the compiled Reason code to the React Native client.
 
 Now you can start coding by editing files in `src/`!
 
-[Read more about starting the project in your environment of choice](http://facebook.github.io/react-native/docs/getting-started).
+[Read more about starting the project in your environment of choice](https://reactnative.dev/docs/getting-started).
 
 **Note: as soon as you have the app installed in a simulator/emulator, you can
 just run**
