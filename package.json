@@ -42,7 +42,7 @@
     "reason-future": "^2.4.0",
     "reason-highlightjs": "^0.2.0",
     "reason-react": "^0.7.0",
-    "reason-react-native": "^0.60.1",
+    "reason-react-native": "https://github.com/reason-react-native/reason-react-native.git#bd0b3b1",
     "static-server-cli": "^1.0.2",
     "trash-cli": "^1.4.0"
   }

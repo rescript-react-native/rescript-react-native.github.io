@@ -69,7 +69,8 @@ Path.join([|sourcePath, "**/*.md"|])
   });
 
 Js.log("Modules...");
-let sourcePath = Path.join([|root, "..", "reason-react-native", "src"|]);
+let sourcePath =
+  Path.join([|root, "node_modules", "reason-react-native", "src"|]);
 let outputPath = Path.join([|root, "build", "docs-src"|]);
 Path.join([|sourcePath, "**/*.md"|])
 ->FsUtils.transform(files => {

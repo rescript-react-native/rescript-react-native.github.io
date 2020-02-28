@@ -2081,14 +2081,6 @@ readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.5, readable
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   integrity sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
-  dependencies:
-    core-util-is "~1.0.0"
-    inherits "~2.0.3"
-    isarray "~1.0.0"
-    process-nextick-args "~2.0.0"
-    safe-buffer "~5.1.1"
-    string_decoder "~1.1.1"
-    util-deprecate "~1.0.1"
 
 readable-stream@~1.0.31:
   version "1.0.34"
@@ -2110,10 +2102,9 @@ reason-highlightjs@^0.2.0:
   resolved "https://registry.yarnpkg.com/reason-highlightjs/-/reason-highlightjs-0.2.0.tgz#275583ef73ec79d8bfd1d9940431162094d196c2"
   integrity sha512-6tidPU8nKpwAkPm3Tf7BDjKzfYmHXn0iR1hG+Dzu/3uuadcphpcJspjrs54GWIfx3fevNmWGhsyGW60zUxHkmg==
 
-reason-react-native@^0.60.1:
-  version "0.60.1"
-  resolved "https://registry.yarnpkg.com/reason-react-native/-/reason-react-native-0.60.1.tgz#eb60dbed6a85ffc4805c08ab4d6a0b551c132c7f"
-  integrity sha512-XJJqG62LW9j7YstzAsD20S8t1kH3uVu19/PT5NByceCACq/8oClBLsFXHXhlPvVvdgKvydGjQo+mNb+JCoJ2Kw==
+"reason-react-native@https://github.com/reason-react-native/reason-react-native.git#bd0b3b1":
+  version "0.61.1"
+  resolved "https://github.com/reason-react-native/reason-react-native.git#bd0b3b1708076d0de39c669e2a1f89836cfd9ed3"
 
 reason-react@^0.7.0:
   version "0.7.0"

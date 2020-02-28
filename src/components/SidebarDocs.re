@@ -113,51 +113,51 @@ let make = (~docsIndex, ~currentLocation) => {
                </Text>
              </SpacedView>
            </div>
-           {{section.data
-             ->List.map(((title, link)) => {
-                 let fulllink = "en/" ++ link;
-                 let isActive =
-                   currentLocation##pathname
-                   |> Js.String.startsWith(fulllink ++ "index.html");
-                 !(link |> Js.String.startsWith("docs/apis/"))
-                 && !(link |> Js.String.startsWith("docs/components/"))
-                 || (
-                   link
-                   |> Js.String.startsWith("docs/apis/")
-                   || link
-                   |> Js.String.startsWith("docs/components/")
-                 )
-                 && docsIndex->Array.some(path =>
-                      link == "docs/" ++ path ++ "/"
-                    )
-                   ? <ViewLink
-                       key=title
-                       href={Consts.baseUrl ++ "/" ++ fulllink}
-                       style={Style.arrayOption([|
-                         Some(styles##link),
-                         isActive ? Some(styles##linkActive) : None,
-                       |])}>
-                       <SpacedView horizontal=XS vertical=XXS>
-                         <Text
-                           style={Style.arrayOption([|
-                             Some(styles##linkText),
-                             isActive ? Some(styles##linkTextActive) : None,
-                           |])}>
-                           title->React.string
-                         </Text>
-                       </SpacedView>
-                     </ViewLink>
-                   : <SpacedView horizontal=XS vertical=XXS>
-                       <Text
-                         key=title
-                         style={Style.array([|
-                           styles##link,
-                           styles##notlinkText,
-                         |])}>
-                         title->React.string
-                       </Text>
-                     </SpacedView>;
-               })}
+           {{
+              section.data
+              ->List.map(((title, link)) => {
+                  let fulllink = "en/" ++ link;
+                  let isActive =
+                    currentLocation##pathname
+                    |> Js.String.startsWith(fulllink ++ "index.html");
+                  let isApi = link |> Js.String.startsWith("docs/apis/");
+                  let isComponent =
+                    link |> Js.String.startsWith("docs/components/");
+                  !isApi
+                  && !isComponent
+                  || (isApi || isComponent)
+                  && docsIndex->Array.some(path =>
+                       link == "docs/" ++ path ++ "/"
+                     )
+                    ? <ViewLink
+                        key=title
+                        href={Consts.baseUrl ++ "/" ++ fulllink}
+                        style={Style.arrayOption([|
+                          Some(styles##link),
+                          isActive ? Some(styles##linkActive) : None,
+                        |])}>
+                        <SpacedView horizontal=XS vertical=XXS>
+                          <Text
+                            style={Style.arrayOption([|
+                              Some(styles##linkText),
+                              isActive ? Some(styles##linkTextActive) : None,
+                            |])}>
+                            title->React.string
+                          </Text>
+                        </SpacedView>
+                      </ViewLink>
+                    : <SpacedView horizontal=XS vertical=XXS>
+                        <Text
+                          key=title
+                          style={Style.array([|
+                            styles##link,
+                            styles##notlinkText,
+                          |])}>
+                          title->React.string
+                        </Text>
+                      </SpacedView>;
+                });
+            }
             ->List.toArray
             ->React.array}
            <Spacer size=Spacer.S />
