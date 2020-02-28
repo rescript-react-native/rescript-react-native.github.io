@@ -111,8 +111,8 @@ let make = (~currentLocation) => {
       <ViewLink href={Consts.baseUrl ++ "/"} style=styles##logoLink>
         <SpacedView style=styles##logo vertical=XS horizontal=XS>
           <SVGBsReactNative
-            width={36.->ReactFromSvg.Size.pt}
-            height={36.->ReactFromSvg.Size.pt}
+            width={36.->ReactFromSvg.Size.dp}
+            height={36.->ReactFromSvg.Size.dp}
             fill=Consts.Colors.lightest
           />
           <WindowSizeFilter.Small>
@@ -175,7 +175,7 @@ let make = (~currentLocation) => {
                accessibilityLabel={item.text}>
                {item.componentFunc(
                   ~iconColor=Consts.Colors.light,
-                  ~iconSize=22.->ReactFromSvg.Size.pt,
+                  ~iconSize=22.->ReactFromSvg.Size.dp,
                 )}
                <WindowSizeFilter.NotSmall>
                  <Spacer size=XS />

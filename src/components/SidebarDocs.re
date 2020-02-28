@@ -10,7 +10,7 @@ let styles =
       "link": viewStyle(),
       "linkActive":
         viewStyle(
-          ~shadowColor=Predefined.Colors.blue,
+          ~shadowColor=Predefined.Colors.Ios.light.blue,
           ~shadowOffset=offset(~width=-3., ~height=0.),
           ~shadowOpacity=1.,
           ~shadowRadius=0.,
@@ -18,7 +18,8 @@ let styles =
         ),
       "linkText":
         textStyle(~fontSize=14., ~fontWeight=`_400, ~color="#555", ()),
-      "linkTextActive": textStyle(~color=Predefined.Colors.blue, ()),
+      "linkTextActive":
+        textStyle(~color=Predefined.Colors.Ios.light.blue, ()),
       "notlinkText": textStyle(~color="#ddd", ()),
     },
   );
@@ -80,7 +81,7 @@ let make = (~docsIndex, ~currentLocation) => {
                   <Text style=styles##title>
                     {renderSectionBag##section##key
                      ->Option.getWithDefault("")
-                     ->String.uppercase
+                     ->String.uppercase_ascii
                      ->React.string}
                   </Text>
                 </SpacedView>
@@ -109,7 +110,7 @@ let make = (~docsIndex, ~currentLocation) => {
              )}>
              <SpacedView vertical=M horizontal=None>
                <Text style=styles##title>
-                 {section.title->String.uppercase->React.string}
+                 {section.title->String.uppercase_ascii->React.string}
                </Text>
              </SpacedView>
            </div>

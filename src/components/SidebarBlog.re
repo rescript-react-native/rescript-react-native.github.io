@@ -52,17 +52,19 @@ let make = (~blogIndex) => {
   <SpacedView>
     <SpacedView vertical=SpacedView.M horizontal=SpacedView.None>
       <Text style=styles##title>
-        {"Recent posts"->String.uppercase->React.string}
+        {"Recent posts"->String.uppercase_ascii->React.string}
       </Text>
     </SpacedView>
-    {{blogIndex->Array.map(indexEntry =>
-        <TextLink
-          key=indexEntry##title
-          href={Consts.baseUrl ++ "/en/blog/" ++ indexEntry##id}
-          style=styles##link>
-          {indexEntry##title->React.string}
-        </TextLink>
-      )}
+    {{
+       blogIndex->Array.map(indexEntry =>
+         <TextLink
+           key=indexEntry##title
+           href={Consts.baseUrl ++ "/en/blog/" ++ indexEntry##id}
+           style=styles##link>
+           {indexEntry##title->React.string}
+         </TextLink>
+       );
+     }
      ->React.array}
     <Spacer size=Spacer.S />
   </SpacedView>;

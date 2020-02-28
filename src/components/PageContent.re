@@ -50,7 +50,7 @@ let styles =
           ~fontSize=14.,
           ~fontWeight=`_300,
           ~alignItems=`center,
-          ~color=Predefined.Colors.blue,
+          ~color=Predefined.Colors.Ios.light.blue,
           (),
         ),
       "wip":
@@ -63,7 +63,7 @@ let styles =
           (),
         ),
       "wipText": style(~fontSize=16., ~lineHeight=16. *. 1.5, ()),
-      "wipEditLink": style(~color=Predefined.Colors.blue, ()),
+      "wipEditLink": style(~color=Predefined.Colors.Ios.light.blue, ()),
     },
   );
 
@@ -102,9 +102,9 @@ let make = (~pageData) => {
            ->Option.map(officialDocHref =>
                <TextLink style=styles##officialDocLink href=officialDocHref>
                  <SVGExternalLink
-                   width={14.->ReactFromSvg.Size.pt}
-                   height={14.->ReactFromSvg.Size.pt}
-                   fill=Predefined.Colors.blue
+                   width={14.->ReactFromSvg.Size.dp}
+                   height={14.->ReactFromSvg.Size.dp}
+                   fill={Predefined.Colors.Ios.light.blue}
                  />
                  {| Official documentation |}->React.string
                </TextLink>

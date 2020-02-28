@@ -7,8 +7,8 @@ external createWebElementFromString: (string, 'props) => React.element =
   "createElement";
 
 let lightGrey = Predefined.Colors.lightGrey;
-let blue = Predefined.Colors.blue;
-let purple = Predefined.Colors.purple;
+let blue = Predefined.Colors.Ios.light.blue;
+let purple = Predefined.Colors.Ios.light.purple;
 
 let styles =
   Style.(
