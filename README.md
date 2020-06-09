@@ -13,7 +13,6 @@ Read the [contribution guidelines](https://github.com/reason-react-native/.githu
 
 - install [nodejs](https://nodejs.org/en/)
 - install [yarn](https://yarnpkg.com/)
-- install [bsb](https://bucklescript.github.io/)
 
 
 ## How to run site
