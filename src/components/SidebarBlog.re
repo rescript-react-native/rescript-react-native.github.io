@@ -52,7 +52,7 @@ let make = (~blogIndex) => {
   <SpacedView>
     <SpacedView vertical=SpacedView.M horizontal=SpacedView.None>
       <Text style=styles##title>
-        {"Recent posts"->String.uppercase->React.string}
+        {"Recent posts"->String.uppercase_ascii->React.string}
       </Text>
     </SpacedView>
     {{blogIndex->Array.map(indexEntry =>

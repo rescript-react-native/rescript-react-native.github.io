@@ -109,7 +109,7 @@ let make = (~docsIndex, ~currentLocation) => {
              )}>
              <SpacedView vertical=M horizontal=None>
                <Text style=styles##title>
-                 {section.title->String.uppercase->React.string}
+                 {section.title->String.uppercase_ascii->React.string}
                </Text>
              </SpacedView>
            </div>
