@@ -102,8 +102,8 @@ let make = (~pageData) => {
            ->Option.map(officialDocHref =>
                <TextLink style=styles##officialDocLink href=officialDocHref>
                  <SVGExternalLink
-                   width={14.->ReactFromSvg.Size.dp}
-                   height={14.->ReactFromSvg.Size.dp}
+                   width="14"
+                   height="14"
                    fill={Predefined.Colors.Ios.light.blue}
                  />
                  {| Official documentation |}->React.string

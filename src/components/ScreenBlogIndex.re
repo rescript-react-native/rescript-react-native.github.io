@@ -27,20 +27,22 @@ let make = (~docsIndex, ~blogIndex, ~currentLocation) => {
         style(~flexDirection=`row, ~flexWrap=`wrap, ~height=100.->pct, ())
       )>
       <ContentContainer>
-        {{blogIndex->Array.map(indexEntry =>
-            <ViewLink
-              key=indexEntry##title
-              href={Consts.baseUrl ++ "/en/blog/" ++ indexEntry##id}>
-              <SpacedView style=styles##card>
-                <Title> {indexEntry##title->React.string} </Title>
-                <Spacer />
-                <TextLight>
-                  {indexEntry##date->React.string}
-                  {("  |  By @" ++ indexEntry##author)->React.string}
-                </TextLight>
-              </SpacedView>
-            </ViewLink>
-          )}
+        {{
+           blogIndex->Array.map(indexEntry =>
+             <ViewLink
+               key=indexEntry##title
+               href={Consts.baseUrl ++ "/en/blog/" ++ indexEntry##id}>
+               <SpacedView style=styles##card>
+                 <Title> {indexEntry##title->React.string} </Title>
+                 <Spacer />
+                 <TextLight>
+                   {indexEntry##date->React.string}
+                   {("  |  By @" ++ indexEntry##author)->React.string}
+                 </TextLight>
+               </SpacedView>
+             </ViewLink>
+           );
+         }
          ->React.array}
       </ContentContainer>
       <SidebarDocs docsIndex currentLocation />

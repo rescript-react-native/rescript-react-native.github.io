@@ -32,14 +32,11 @@ let makeSections =
   sections
   ->List.toArray
   ->Array.map(section =>
-      {
-        "key": Some(section.title),
-        "data": section.data->List.toArray,
-        "renderItem": None,
-        "ItemSeparatorComponent": None,
-        "keyExtractor": None,
-        "sectionData": None,
-      }
+      VirtualizedSectionList.section(
+        ~key=section.title,
+        ~data=section.data->List.toArray,
+        (),
+      )
     );
 };
 

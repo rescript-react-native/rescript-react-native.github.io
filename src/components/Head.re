@@ -26,7 +26,9 @@ let make = () =>
        ~props=
          ReactDOMRe.objToDOMProps({
            "rel": "mask-icon",
-           "href": {Consts.baseUrl ++ "/safari-pinned-tab.svg"},
+           "href": {
+             Consts.baseUrl ++ "/safari-pinned-tab.svg";
+           },
            "color": "#222222",
          }),
        [||],
