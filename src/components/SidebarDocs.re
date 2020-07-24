@@ -78,7 +78,6 @@ let make = (~docsIndex, ~currentLocation) => {
                   <Text style=styles##title>
                     {renderSectionBag##section##key
                      ->Option.getWithDefault("")
-                     ->String.uppercase_ascii
                      ->React.string}
                   </Text>
                 </SpacedView>
@@ -106,9 +105,7 @@ let make = (~docsIndex, ~currentLocation) => {
                (),
              )}>
              <SpacedView vertical=M horizontal=None>
-               <Text style=styles##title>
-                 {section.title->String.uppercase_ascii->React.string}
-               </Text>
+               <Text style=styles##title> section.title->React.string </Text>
              </SpacedView>
            </div>
            {{
@@ -124,9 +121,15 @@ let make = (~docsIndex, ~currentLocation) => {
                   !isApi
                   && !isComponent
                   || (isApi || isComponent)
-                  && docsIndex->Array.some(path =>
-                       link == "docs/" ++ path ++ "/"
-                     )
+                  && docsIndex->Array.some(path
+                       // test if page exist (and ignore anchor link parts)
+                       =>
+                         link->Js.String2.split("#")[0]
+                         ->Option.getWithDefault("")
+                         == "docs/"
+                         ++ path
+                         ++ "/"
+                       )
                     ? <ViewLink
                         key=title
                         href={Consts.baseUrl ++ "/" ++ fulllink}
@@ -163,6 +166,12 @@ let make = (~docsIndex, ~currentLocation) => {
        )
      ->List.toArray
      ->React.array}
+    <Spacer />
+    <SpacedView horizontal=L>
+      <Text style=Style.(style(~fontSize=12., ~textAlign=`right, ()))>
+        "* Specific modules for bindings"->React.string
+      </Text>
+    </SpacedView>
     <Spacer />
   </div>;
 };

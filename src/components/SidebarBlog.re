@@ -48,9 +48,7 @@ let sections = makeSections(Consts.sections);
 let make = (~blogIndex) => {
   <SpacedView>
     <SpacedView vertical=SpacedView.M horizontal=SpacedView.None>
-      <Text style=styles##title>
-        {"Recent posts"->String.uppercase_ascii->React.string}
-      </Text>
+      <Text style=styles##title> "Recent posts"->React.string </Text>
     </SpacedView>
     {{
        blogIndex->Array.map(indexEntry =>
