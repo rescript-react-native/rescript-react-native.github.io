@@ -23,6 +23,7 @@ let make = (~docsIndex, ~blogIndex, ~currentLocation) => {
     <HeaderLarge currentLocation />
     <Container
       maxWidth={1000.->Style.dp}
+      wrapperStyle=Style.(style(~overflow=`visible, ()))
       style=Style.(
         style(~flexDirection=`row, ~flexWrap=`wrap, ~height=100.->pct, ())
       )>
