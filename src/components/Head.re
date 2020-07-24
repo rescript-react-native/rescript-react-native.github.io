@@ -57,7 +57,6 @@ let make = () =>
 html {
   width: 100%;
   height: 100%;
-  overflow-x:hidden;
   background: #fff;
   font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
 }
