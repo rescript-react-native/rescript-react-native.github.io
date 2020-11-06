@@ -12,7 +12,7 @@ _Reason React Native_ is a safe & simple way to build
 
 By leveraging the ReasonML great type system, expressive language features and
 smooth interoperability with JavaScript (thanks to
-[BuckleScript](https://bucklescript.github.io)), _Reason React Native_ provide
+[ReScript](https://rescript-lang.org/), _Reason React Native_ provide
 bindings for React Native features as components & APIs that are:
 
 - Safe and statically typed
@@ -31,7 +31,7 @@ bindings for React Native.
 On your side, you write Reason code that use the `ReactNative` module exposed by
 `reason-react-native` package that you will find on `npm`.
 
-BuckleScript will compile this code to safe JavaScript that React Native can
+ReScript will compile this code to safe JavaScript that React Native can
 consume like standard JavaScript.
 
 ![Introduction](/reason-react-native/schemas/introduction.svg)
@@ -45,7 +45,7 @@ with a safer React Native app!
 ## Zero-Cost
 
 What is awesome about _Reason React Native_ bindings is that they don't
-introduce an additional cost. The JavaScript code produced by BuckleScript will
+introduce an additional cost. The JavaScript code produced by ReScript will
 directly hit React & React Native JavaScript implementation, without any extra
 runtime & bundle cost.
 
@@ -58,7 +58,7 @@ if you are unfamiliar with one of these two, we encourage you to have a look to
 their documentations as soon as you don't find an answer you might have here.
 
 And one day or another, you will also have to look for answers on
-[BuckleScript](https://bucklescript.github.io/docs/en/what-why), our
+[ReScript](https://rescript-lang.org/docs/manual/latest/introduction), our
 Reason-to-JavaScript compiler.
 
 ---

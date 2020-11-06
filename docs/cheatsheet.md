@@ -3,12 +3,7 @@ id: cheatsheet
 title: Cheatsheet
 ---
 
-If you are not familiar with ReasonML or BuckleScript, be sure to check
-
-- [ReasonML Syntax Cheatsheet](https://reasonml.github.io/docs/en/syntax-cheatsheet)
-  to compare ReasonML syntax to JavaScript
-- [BuckleScript Cheatsheet](https://bucklescript.github.io/docs/en/interop-cheatsheet)
-  to learn how to interop with JavaScript
+If you are not familiar with ReScript / Reason, be sure to check [ReScript Overview](https://rescript-lang.org/docs/manual/latest/overview) to learn how to interop with JavaScript
 
 ## JSX String
 

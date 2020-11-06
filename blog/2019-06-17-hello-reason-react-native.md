@@ -8,7 +8,7 @@ Today is a big day for the ReasonML community as we are releasing the fruits of
 a long effort started about 4 months ago.
 
 As more and more people were starting to use ReasonML on production apps using
-React Native, we wanted to make the BuckleScript bindings for React Native,
+React Native, we wanted to make the ReScript / BuckleScript bindings for React Native,
 known has `bs-react-native`, more accessible. This would have involved several
 breaking changes in order to simplify some APIs that have been designed with a
 high level of security in mind, but at some costs. The cost of being harder to
@@ -26,7 +26,7 @@ JavaScript code produced by the bindings.
 
 ## Zero-cost
 
-By zero-cost, we means zero additional cost. The JavaScript code BuckleScript
+By zero-cost, we means zero additional cost. The JavaScript code ReScript / BuckleScript
 produces using this bindings will most of the time directly hit React Native
 JavaScript code without creating an unnecessary abstraction above it 🙌.
 

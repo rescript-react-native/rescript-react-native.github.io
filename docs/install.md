@@ -12,8 +12,7 @@ different options to install it:
 
 All options will basically help you to have :
 
-- [BuckleScript](https://bucklescript.github.io/) (`bs-platform` - includes
-  [ReasonML](https://reasonml.github.io)!)
+- [ReScript](https://rescript-lang.org/) (`bs-platform`)
 - [Reason React](https://reasonml.github.io/reason-react/) (`reason-react`)
 - _Reason React Native_ (`reason-react-native`)
 
@@ -100,7 +99,7 @@ The main things you should notice here:
   dependencies.
 
 👀 _For details about this file, please refer to
-[BuckleScript Configuration documentation](https://bucklescript.github.io/docs/en/build-configuration)
+[ReScript Configuration documentation](https://rescript-lang.org/docs/manual/latest/build-configuration)
 if needed._
 
 When it's done, you are ready to

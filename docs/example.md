@@ -53,8 +53,8 @@ noticed this major differences:
   will find similar specific `React.*` to specify null value (`React.null`),
   children from an array `React.array`...)
 - References to `styles` keys aren't using dot notation like in JavaScript but
-  `##` instead thanks to BuckleScript syntax sugar for
-  [direct JavaScript object access](https://bucklescript.github.io/docs/en/object-2#accessors)
+  `##` instead thanks to ReScript syntax sugar for
+  [direct JavaScript object access](https://rescript-lang.org/docs/manual/latest/bind-to-js-object)
 - You won't see any explicit `export` like in JavaScript. By default every
   variables defined in a ReasonML module is exposed.
 

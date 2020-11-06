@@ -84,7 +84,7 @@ let make = (~currentLocation) =>
           </Text>
           <Spacer size=L />
           <Text style=styles##baseline>
-            "All the safeness of Reason at your disposal "->React.string
+            "All the safeness of ReScript at your disposal "->React.string
           </Text>
         </SpacedView>
       </View>

@@ -3,15 +3,14 @@ id: usage
 title: Usage
 ---
 
-When `reason-react-native`, `reason-react` and `bs-platform` are installed, you
+When `bs-platform`, `reason-react` and `reason-react-native` are installed, you
 can run the following command
 
 ```console
 yarn bsb -make-world
 ```
 
-⚠️ _If this process looks fast to you, don't be surprised, that's because
-ReasonML & BuckleScript are fast!_
+⚠️ _If this process looks fast to you, don't be surprised, that's because ReScript is fast!_
 
 This command should compile all `.re` files to their `.bs.js` counterparts.
 
@@ -78,14 +77,14 @@ When you use React Native, you usually always have a terminal opened around with
 Metro Bundler running, which bundle the JavaScript files.
 
 Now you need to also have a process watching for your ReasonML files to compile
-then to JavaScript. The easiest way is to rely on BuckleScript `bsb` watch
+then to JavaScript. The easiest way is to rely on ReScript `bsb` watch
 option `-w`:
 
 ```console
 yarn bsb -make-world -w
 ```
 
-If you are not familiar with BuckleScript `bsb` you should know that you might
+If you are not familiar with ReScript `bsb` you should know that you might
 sometimes have weird compilation errors due to outdated build artifacts. This
 should not happen often but in case you are facing something weird, you can try
 using `bsb` `-clean-world` option
