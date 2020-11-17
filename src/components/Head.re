@@ -29,17 +29,17 @@ let make = () =>
            "href": {
              Consts.baseUrl ++ "/safari-pinned-tab.svg";
            },
-           "color": "#222222",
+           "color": "#000000",
          }),
        [||],
      )}
     <link rel="shortcut icon" href={Consts.baseUrl ++ "/favicon.ico"} />
-    <meta name="msapplication-TileColor" content="#222222" />
+    <meta name="msapplication-TileColor" content="#000000" />
     <meta
       name="msapplication-config"
       content={Consts.baseUrl ++ "/browserconfig.xml"}
     />
-    <meta name="theme-color" content="#222222" />
+    <meta name="theme-color" content="#000000" />
     <link
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"

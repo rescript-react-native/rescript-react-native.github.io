@@ -110,7 +110,7 @@ let make = (~currentLocation) => {
       wrapperStyle=styles##barWrapper>
       <ViewLink href={Consts.baseUrl ++ "/"} style=styles##logoLink>
         <SpacedView style=styles##logo vertical=XS horizontal=XS>
-          <SVGBsReactNative
+          <SVGReScriptReactNative
             width="36"
             height="36"
             fill=Consts.Colors.lightest

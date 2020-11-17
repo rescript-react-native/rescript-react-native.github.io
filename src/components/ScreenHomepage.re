@@ -61,16 +61,16 @@ let make = (~currentLocation) =>
               style(~flex=1., ~flexDirection=`row, ()),
             |])
           )>
-          <SVGReact width="150%" height="150%" fill="rgba(200,200,200, 0.2)" />
+          <SVGReact width="85%" height="85%" fill="rgba(200,200,200, 0.2)" />
           <Spacer size=L />
-          <SVGReasonOutline
-            width="150%"
-            height="150%"
+          <SVGReScriptWhite
+            width="85%"
+            height="85%"
             fill="rgba(200,200,200, 0.2)"
           />
         </View>
         <SpacedView
-          vertical=SpacedView.XL
+          vertical=SpacedView.XXL
           style=Style.(
             style(
               ~flex=1.,

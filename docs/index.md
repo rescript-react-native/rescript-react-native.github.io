@@ -34,7 +34,7 @@ On your side, you write Reason code that use the `ReactNative` module exposed by
 ReScript will compile this code to safe JavaScript that React Native can
 consume like standard JavaScript.
 
-![Introduction](/reason-react-native/schemas/introduction.svg)
+![Introduction](/schemas/introduction.svg)
 
 If you are familiar with Flow or TypeScript, you can see Reason as the next
 level of strongly typed JavaScript.
