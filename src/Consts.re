@@ -138,6 +138,7 @@ let sections = [
       ("Dimensions", api ++ "Dimensions/"),
       ("Easing", api ++ "Easing/"),
       ("Event *", api ++ "Event/"),
+      ("Global *", api ++ "Global/"),
       ("InteractionManager", api ++ "InteractionManager/"),
       ("Keyboard", api ++ "Keyboard/"),
       ("LayoutAnimation", api ++ "LayoutAnimation/"),
