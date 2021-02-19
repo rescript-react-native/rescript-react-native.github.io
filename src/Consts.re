@@ -108,6 +108,7 @@ let sections = [
       ("KeyboardAvoidingView", comp ++ "KeyboardAvoidingView/"),
       ("MaskedViewIOS", comp ++ "MaskedViewIOS/"),
       ("Modal", comp ++ "Modal/"),
+      ("Pressable", comp ++ "Pressable/"),
       ("RefreshControl", comp ++ "RefreshControl/"),
       ("SafeAreaView", comp ++ "SafeAreaView/"),
       ("ScrollView", comp ++ "ScrollView/"),

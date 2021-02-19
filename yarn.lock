@@ -2289,10 +2289,10 @@ reason-highlightjs@^0.2.0:
   resolved "https://registry.yarnpkg.com/reason-highlightjs/-/reason-highlightjs-0.2.1.tgz#65fb8d7faa7c14c5dbcd4104bb9216abac919729"
   integrity sha512-DWWPtfeQjwKgHj2OOieEIAB544uAVjwOAIAg2Yu09CobdUe41Yah0Z67GEvmVtpYCGG/+3CZvDRM1hMVr1zN3A==
 
-reason-react-native@^0.63.0:
-  version "0.63.0"
-  resolved "https://registry.yarnpkg.com/reason-react-native/-/reason-react-native-0.63.0.tgz#08de85136a41809b9a66cac066d4ea6975406000"
-  integrity sha512-rE1OOph5Jxceost2ahdvX+VXJ2RPNyefX9FMXa/OXgqmLKjFeZuyVOySUj41UoohOYyKmZWbgansDGccwYrdUQ==
+reason-react-native@^0.63.3:
+  version "0.63.3"
+  resolved "https://registry.yarnpkg.com/reason-react-native/-/reason-react-native-0.63.3.tgz#0bf87e3be6e7db20da35b438c9739494d803aa7b"
+  integrity sha512-fsxrYvL+Z2BWvoBad91Qhg+N77dn6rpXDsQs7UtfIW1lH1zAukRTOw/CXAvs0p8VZA+3nDTId6xqwjxheuKV/g==
 
 reason-react@^0.9.0:
   version "0.9.1"
