@@ -149,6 +149,7 @@ let sections = [
       ("PermissionsAndroid", api ++ "PermissionsAndroid/"),
       ("PixelRatio", api ++ "PixelRatio/"),
       ("Platform", api ++ "Platform/"),
+      ("PlatformColor", api ++ "PlatformColor/"),
       ("Settings", api ++ "Settings/"),
       ("Share", api ++ "Share/"),
       ("Style *", api ++ "Style/"),
