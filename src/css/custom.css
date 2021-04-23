@@ -1,0 +1,107 @@
+:root {
+  --ifm-color-primary: hsl(193, 95%, 45%);
+  --ifm-color-primary-dark: hsl(193, 95%, 40%);
+  --ifm-color-primary-darker: hsl(193, 95%, 35%);
+  --ifm-color-primary-darkest: hsl(193, 95%, 30%);
+  --ifm-color-primary-light: hsl(193, 50%, 55%);
+  --ifm-color-primary-lighter: hsl(193, 45%, 60%);
+  --ifm-color-primary-lightest: hsl(193, 45%, 65%);
+  --ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.footer__bottom {
+  margin-top: 60px;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+/* Components grid */
+
+article .component-grid {
+  max-width: 800px;
+  margin-bottom: 22px;
+}
+article .component-grid .component {
+  border: 1px solid var(--ifm-color-emphasis-500);
+  border-radius: var(--ifm-global-radius);
+  margin: 0 auto 24px;
+  width: 100%;
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+article .component-grid .component:hover {
+  transform: scale(1.05);
+}
+
+article .component-grid h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0 10px;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  line-height: 36px;
+}
+article .component-grid h3 a {
+  color: white;
+}
+
+article .component-grid p {
+  padding: 10px;
+  font-size: 15px;
+  margin: 2px;
+}
+article .component-grid code {
+  font-size: 15px;
+  padding: 0 1px;
+}
+
+html[data-theme="dark"] .component {
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+@supports (display: grid) {
+  article .component-grid {
+    display: grid;
+    grid-column-gap: 22px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  article .component-grid.component-grid-border {
+    border-bottom: 1px solid var(--ifm-table-border-color);
+  }
+
+  article .component {
+    width: 30%;
+    height: 150px;
+    margin: 0 22px 22px auto;
+    vertical-align: top;
+  }
+
+  @supports (display: grid) {
+    article .component-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (min-width: 1440px) {
+      article .component-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    article .component {
+      width: auto;
+      height: auto;
+      margin: 0;
+    }
+  }
+}

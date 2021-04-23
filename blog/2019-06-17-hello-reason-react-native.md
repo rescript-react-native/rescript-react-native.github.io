@@ -1,7 +1,11 @@
 ---
-id: 2019-06-17-hello-reason-react-native
+slug: 2019-06-17-hello-reason-react-native
 title: Hello Reason React Native
 author: MoOx
+author_title: ReScript React Native Core Team
+author_url: https://github.com/MoOx
+author_image_url: https://avatars.githubusercontent.com/u/157534?v=4
+tags: [hello, reason]
 ---
 
 Today is a big day for the ReasonML community as we are releasing the fruits of
@@ -63,7 +67,7 @@ offering 2 packages to say goodbye to `bs-react-native` without pain.
 
 - `bs-react-native-jsx3-compat` (0.11.1)
 - `reason-react-native`
-  ([0.60.0](/en/docs/install/#note-about-reason-react-native-version-number))
+  ([0.60.0](/docs/install/#note-about-reason-react-native-version-number))
 
 ## Wait, what is `bs-react-native-jsx3-compat` ?
 
@@ -97,7 +101,7 @@ to use hooks and directly benefit of (almost) zero-cost bindings!
 And since we care about you and don't want you to upgrade from JSX 2 to 3 by
 hand, we got you covered with a script made with love to help you with that.
 
-[You will find all the required instructions to migrate from `bs-react-native` to `bs-react-native-jsx3-compat` in our documentation](/en/docs/migration/jsx3/).
+[You will find all the required instructions to migrate from `bs-react-native` to `bs-react-native-jsx3-compat` in our documentation](https://reason-react-native.github.io/en/docs/migration/jsx3/).
 
 ## tl;dr
 
@@ -106,7 +110,7 @@ hand, we got you covered with a script made with love to help you with that.
   `bs-react-native` with `reason-react` 0.7.0 and JSX 3
 - `reason-react-native` package contains the new bindings for React Native, that
   offers more accessible APIs and that is almost zero-cost
-- [We offer you an easy and smooth migration plan so you can start using `reason-react-native` and slowly say bye to `bs-react-native`](/en/docs/migration/jsx3/).
+- [We offer you an easy and smooth migration plan so you can start using `reason-react-native` and slowly say bye to `bs-react-native`](https://reason-react-native.github.io/en/docs/migration/jsx3/).
 
 ## Thanks
 
@@ -136,4 +140,4 @@ Components need to be documented. We really want to offer the best developer
 experience possible and that's definitely part of it.
 
 👉Now it's time for you to check our
-[Getting Started with Reason React Native documentation](/en/docs/)
+[Getting Started with Reason React Native documentation](/docs/)

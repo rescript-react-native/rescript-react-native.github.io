@@ -1,50 +1,37 @@
 {
   "private": true,
-  "name": "reason-react-native.github.io",
-  "repository": "https://github.com/reason-react-native/reason-react-native.github.io.git",
+  "name": "rescript-react-native.github.io",
+  "repository": "https://github.com/rescript-react-native/rescript-react-native.github.io.git",
   "version": "0.0.0",
   "scripts": {
-    "svg:cleanup": "trash src/SVGs/components",
-    "svg:convert": "react-from-svg src/SVGs src/SVGs/components --with-web-for-reason",
-    "svg:format": "find src/SVGs/components -name \"*.re\" | grep -v \"node_modules\" | xargs bsrefmt --in-place",
-    "svg": "yarn svg:cleanup && yarn svg:convert && yarn svg:format",
-    "re:clean": "bsb -clean-world",
-    "re:start": "bsb -make-world -w",
-    "re:build": "bsb -make-world",
-    "re:clean-build": "yarn re:clean && yarn re:build",
-    "build:prepare:md": "trash build/md && node scripts/PrepareMdToJson.bs.js",
-    "build:prepare": "yarn build:prepare:md",
-    "build:prerender": "node scripts/BuildWebsite.entry.js",
-    "build:copy-static": "copyup \"public/**/*\" dist",
-    "build": "yarn svg && yarn re:build && yarn build:prepare && yarn build:prerender && yarn build:copy-static",
-    "serve": "static-server-cli dist",
-    "start": "opn http://localhost:9000/ & yarn serve",
-    "clean": "yarn re:clean",
-    "test": "yarn svg && yarn re:clean-build && yarn build",
-    "predeploy": "yarn build",
-    "deploy": "./scripts/deploy.sh"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
-  "devDependencies": {
-    "@moox/bs-react-helmet": "^2.0.0",
-    "@phenomic/markdown-as-json": "^1.0.0",
-    "@reason-react-native/safe-area-context": "^3.1.0",
-    "bs-platform": "^8.2.0",
-    "copyfiles": "^2.2.0",
-    "glob": "^7.1.3",
-    "mkdirp": "^0.5.1",
-    "module-alias": "^2.2.0",
-    "opn-cli": "^4.1.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-from-svg": "^4.0.0",
-    "react-helmet": "^5.2.0",
-    "react-multiversal": "https://github.com/MoOx/react-multiversal.git#bf0f30f",
-    "react-native-web": "^0.11.2",
-    "reason-future": "^2.6.0",
-    "reason-highlightjs": "^0.2.0",
-    "reason-react": "^0.9.0",
-    "reason-react-native": "https://github.com/reason-react-native/reason-react-native#decdb4c",
-    "static-server-cli": "^1.0.2",
-    "trash-cli": "^1.4.0"
+  "dependencies": {
+    "@docusaurus/core": "2.0.0-alpha.73",
+    "@docusaurus/preset-classic": "2.0.0-alpha.73",
+    "@mdx-js/react": "^1.6.21",
+    "clsx": "^1.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

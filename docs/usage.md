@@ -1,9 +1,9 @@
 ---
-id: usage
+slug: usage
 title: Usage
 ---
 
-When `bs-platform`, `reason-react` and `reason-react-native` are installed, you
+When `rescript`, `@rescript/react` and `rescript-react-native` are installed, you
 can run the following command
 
 ```console
@@ -12,9 +12,9 @@ yarn bsb -make-world
 
 ⚠️ _If this process looks fast to you, don't be surprised, that's because ReScript is fast!_
 
-This command should compile all `.re` files to their `.bs.js` counterparts.
+This command should compile all `.res` files to their `.bs.js` counterparts.
 
-This means if you have an `src/App.re` file, you should now have `src/App.bs.js`
+This means if you have an `src/App.res` file, you should now have `src/App.bs.js`
 file too.
 
 You may also notice some compilation artifacts:
@@ -34,49 +34,45 @@ lib/bs
 
 _If you used our template, it should be done already_.
 
-## Automate compilation of `*.re` files
+## Automate compilation of `*.res` files
 
 You have multipes way to not have to think about compilation for your daily
 workflow
 
-## Compile ReasonML files via IDE
+## Compile ReScript files via IDE
 
 To get the best development experience possible, we recommend you to use
 [VSCode](https://code.visualstudio.com) with
-[Reason Language Server](https://marketplace.visualstudio.com/items?itemName=jaredly.reason-vscode)
+[ReScript plugin](https://marketplace.visualstudio.com/items?itemName=chenglou92.rescript-vscode)
 extension. Optionally you can add
 [Flow Language Server](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
 extension if you have existing JavaScript covered by Flow.
 
 ⚠️ If you don’t want to use VSCode, we still recommend you to
-[get a ReasonML editor plugin](https://reasonml.github.io/docs/en/editor-plugins/).
+[get a ReScript editor plugin](https://rescript-lang.org/docs/manual/latest/editor-plugins).
 
-By having an IDE that handle ReasonML compilation, you will not have to run a
+By having an IDE that handle ReScript compilation, you will not have to run a
 command in the terminal to handle this & will just have to follow the standard
-React Native workflow, your ReasonML files being compiled to JavaScript.
+React Native workflow, your ReScript files being compiled to JavaScript.
 
 You will also have inline errors & much more feature that won't be provided by
 using a CLI workflow.
 
 ## Vscode workflow
 
-When you open VSCode with the Reason Language Server plugin (RLS), you won't
-have to do anything. The plugin will detect `bs-platform` & will handle the
-compilation/watching process for you.
-
-In case you are facing something weird, you can always trigger a cleanup by
-doing `Cmd/Ctrl + Shift + P` and look for `Restart Reason Language Server`.
+When you open VSCode with the ReScript plugin, you won't have to do anything.
+The plugin will detect ReScript & will offer you to handle compilation.
 
 ⛑ _Even if you decide to use Vscode or a smiliar IDE to ease your day to day
 development workflow, you should have a look to CLI workflow so you know how it
 works._
 
-### Compile ReasonML files via CLI
+### Compile ReScript files via CLI
 
 When you use React Native, you usually always have a terminal opened around with
 Metro Bundler running, which bundle the JavaScript files.
 
-Now you need to also have a process watching for your ReasonML files to compile
+Now you need to also have a process watching for your ReScript files to compile
 then to JavaScript. The easiest way is to rely on ReScript `bsb` watch
 option `-w`:
 
@@ -125,7 +121,7 @@ workflow
 yarn re:watch
 ```
 
-As soon as `.re` files are being compiled to `.bs.js`, you can either start the
+As soon as `.res` files are being compiled to `.bs.js`, you can either start the
 project on _iOS Simulator_ (included in _Xcode_) or an Android Emulator (if you
 are unfamiliar with _Android Studio_, you might be interested by
 [Genymotion](https://www.genymotion.com)).
@@ -144,7 +140,7 @@ yarn android
 
 This commands should open up a virtual device & start React Native
 [metro bundler](https://github.com/facebook/metro). This packager will serves
-the compiled Reason code to the React Native client.
+the compiled ReScript code to the React Native client.
 
 Now you can start coding by editing files in `src/`!
 
@@ -169,33 +165,15 @@ metro bundler.
 @todo
 
 Meanwhile, check out
-[Reason React interop page](https://reasonml.github.io/reason-react/docs/en/components#interop).
+[ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js).
 
 You can also browse the source of
-[reason-react-native](https://github.com/reason-react-native/reason-react-native/tree/master/reason-react-native/src)
+[rescript-react-native](https://github.com/rescript-react-native/rescript-react-native/tree/master/src)
 because that's exactly what this project is doing!
 
-### Using Reason React Native components from JavaScript
+### Using ReScript React Native components from JavaScript
 
 @todo
 
 Meanwhile, check out
-[Reason React interop page](https://reasonml.github.io/reason-react/docs/en/components#interop)
-
----
-
-👉 At this step, you should check our in-depth
-[Example](/en/docs/example/) or go directly check our
-[Cheatsheet](/en/docs/cheatsheet/)
-
----
-
-## Further reading
-
-- [Example](/en/docs/example/)
-- [Cheatsheet](/en/docs/cheatsheet/)
-
-## In case you missed it
-
-- [Getting Started](/en/docs/)
-- [Install](/en/docs/install/)
+[ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js)

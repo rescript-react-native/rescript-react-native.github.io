@@ -1,5 +1,5 @@
 ---
-id: cheatsheet
+slug: cheatsheet
 title: Cheatsheet
 ---
 
@@ -13,9 +13,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 <Text>Hello, world!</Text>
 ```
 
-### Reason JSX String
+### JSX String
 
-```reason
+```rescript
 <Text> "Hello, world!"->React.string </Text>
 ```
 
@@ -27,9 +27,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 <Text>42</Text>
 ```
 
-### Reason JSX Number (int)
+### JSX Number (int)
 
-```reason
+```rescript
 <Text>
   42
   ->Js.Int.toString
@@ -45,9 +45,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 <Text>4.2</Text>
 ```
 
-### Reason JSX Number (float)
+### JSX Number (float)
 
-```reason
+```rescript
 <Text>
   4.2
   ->Js.Float.toString
@@ -67,9 +67,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 )}
 ```
 
-### Reason JSX Array (of string)
+### JSX Array (of string)
 
-```reason
+```rescript
 {items
 ->Belt.Array.mapWithIndex((item, index) =>
   <Text
@@ -88,9 +88,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 <Text>{condition && something}</Text>
 ```
 
-### Reason JSX conditional string
+### JSX conditional string
 
-```reason
+```rescript
 <Text>
   {
     condition ? something->React.string : React.null
@@ -110,12 +110,12 @@ _Assuming `something` is a `string` that can be `undefined`._
 }
 ```
 
-### Reason JSX optional string
+### JSX optional string
 
 _Recommended: Assuming `something` is an
-[optional](https://reasonml.github.io/docs/en/null-undefined-option) `string`._
+[optional](https://rescript-lang.org/docs/manual/latest/null-undefined-option) `string`._
 
-```reason
+```rescript
 {
   something
   ->Belt.Option.map(thing =>
@@ -132,7 +132,7 @@ _Recommended: Assuming `something` is an
 _If you have to work with JavaScript/JSON: Assuming `something` is a JavaScript
 `string` that can be `undefined`._
 
-```reason
+```rescript
 {
   something
   ->Js.Nullable.toOption /* convert undefined || string  as option(string) */
@@ -176,9 +176,9 @@ const styles = StyleSheet.create({
 console.log(StyleSheet.flatten([styles.container]));
 ```
 
-### Reason React Native StyleSheet
+### ReScript React Native StyleSheet
 
-```reason
+```rescript
 open ReactNative;
 
 let styles =
@@ -218,9 +218,9 @@ Js.log(StyleSheet.flatten([|styles##container|]));
 <View style={[styles.container, styles.containerAdditionalStyles]} />
 ```
 
-### Reason Concatened styles
+### Concatened styles
 
-```reason
+```rescript
 <View
   style=Style.(array([|
     styles##container,
@@ -243,9 +243,9 @@ Js.log(StyleSheet.flatten([|styles##container|]));
 />
 ```
 
-### Reason Optional styles
+### Optional styles
 
-```reason
+```rescript
 <View
   style=Style.(arrayOption([|
     Some(styles##container),
@@ -281,10 +281,10 @@ export default class HelloWorld extends Component {
 }
 ```
 
-### Reason Hello World
+### Hello World
 
-```reason
-/* App.re */
+```rescript
+/* App.res */
 open Belt;
 open ReactNative;
 
@@ -301,16 +301,3 @@ let make = (~name=?) => {
   </View>;
 };
 ```
-
----
-
-## Further reading
-
-- [Migration from `bs-react-native`](/en/docs/migration/jsx3/)
-
-## In case you missed it
-
-- [Getting Started](/en/docs/)
-- [Installation](/en/docs/install/)
-- [Usage](/en/docs/usage/)
-- [Example](/en/docs/example/)
