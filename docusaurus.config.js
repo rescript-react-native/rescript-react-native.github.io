@@ -11,12 +11,12 @@ module.exports = {
   organizationName: "rescript-react-native",
   projectName: "rescript-react-native.github.io",
   themeConfig: {
-    // algolia: {
-    //   apiKey: "2e8d1544f0698bef1243f3f7850b6483",
-    //   indexName: "reason-react-native",
-    //   // contextualSearch: true,
-    //   // searchParameters: {},
-    // },
+    algolia: {
+      apiKey: "958680e5ab5c10ae3ab9bfbb36d83d61",
+      indexName: "rescript-react-native",
+      // contextualSearch: true,
+      // searchParameters: {},
+    },
     navbar: {
       style: "dark",
       title: "ReScript React Native",
