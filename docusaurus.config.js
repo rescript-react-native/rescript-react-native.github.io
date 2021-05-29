@@ -74,13 +74,11 @@ module.exports = {
           items: [
             {
               label: "GitHub Discussions",
-              href:
-                "https://github.com/rescript-react-native/rescript-react-native/discussions",
+              href: "https://github.com/rescript-react-native/rescript-react-native/discussions",
             },
             {
               label: "StackOverflow",
-              href:
-                "https://stackoverflow.com/questions/tagged/rescript-react-native",
+              href: "https://stackoverflow.com/questions/tagged/rescript-react-native",
             },
             {
               label: "ReScript Forum",
@@ -105,8 +103,7 @@ module.exports = {
             },
             {
               label: "Wesbite Source",
-              href:
-                "https://github.com/rescript-react-native/rescript-react-native.github.io",
+              href: "https://github.com/rescript-react-native/rescript-react-native.github.io",
             },
           ],
         },
@@ -123,12 +120,12 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editCurrentVersion: false,
           editUrl:
-            "https://github.com/rescript-react-native/rescript-react-native.github.io/edit/src/docs/",
+            "https://github.com/rescript-react-native/rescript-react-native.github.io/edit/src/",
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            "https://github.com/rescript-react-native/rescript-react-native.github.io/edit/src/blog/",
+            "https://github.com/rescript-react-native/rescript-react-native.github.io/edit/src/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
