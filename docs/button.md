@@ -1,11 +1,12 @@
 ---
 id: button
 title: Button
+wip: true
 ---
 
 A basic button component that should render nicely on any platform. Supports a minimal level of customization.
 
-If this button doesn't look right for your app, you can build your own button using [TouchableOpacity](touchableopacity) or [TouchableWithoutFeedback](touchablewithoutfeedback).
+If this button doesn't look right for your app, you can build your own button using [Pressable](pressable).
 
 ```res
 <Button
@@ -18,7 +19,7 @@ If this button doesn't look right for your app, you can build your own button us
 
 ## Example
 
-```SnackPlayer name=Button%20Example
+```res
 open ReactNative
 
 let styles = {
@@ -68,17 +69,17 @@ let app = () => {
 
 ## Props
 
-### <div class="label required basic">Required</div>**`onPress`**
+### Required **`onPress`**
 
 Handler to be called when the user taps the button.
 
 | Type                               |
 | ---------------------------------- |
-| function([PressEvent](pressevent)) |
+| function(PressEvent) |
 
 ---
 
-### <div class="label required basic">Required</div>**`title`**
+### Required **`title`**
 
 Text to display inside the button. On Android the given title will be converted to the uppercased form.
 
@@ -104,7 +105,7 @@ Color of the text (iOS), or background color of the button (Android).
 
 | Type            | Default                                                                                                                                                                                                                                   |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [color](colors) | <ins style={{background: '#2196F3'}} className="color-box" /> `'#2196F3'` <div className="label android">Android</div><hr/><ins style={{background: '#007AFF'}} className="color-box" /> `'#007AFF'` <div className="label ios">iOS</div> |
+| colors in hex | 
 
 ---
 
