@@ -1,22 +1,10 @@
 ---
 id: text
 title: Text
-wip: false
+wip: true
 ---
 
-## Text component
-
-```res
-open ReactNative                                                                                                          
-                                                                                                        
-
-// start component
-<Text>{"Hello World"->React.string}</Text> 
-// end component
-```
-
-
-## Text component with style
+## Example
 
 ```res
 open ReactNative                                                                                                          
@@ -28,7 +16,5 @@ let styles = {
   })                                                                                                                      
 }                                                                                                                         
 
-// start component
 <Text style={styles["title"]}> {"Hello World"->React.string} </Text>                                                  
-// end component
 ```
