@@ -21,7 +21,7 @@ bindings for React Native features as components & APIs that are:
 
 It is often said that writing ReactJS code feels like "just using JavaScript".
 The same applies to _ReScript React_ with _ReScript React Native_: you will feel
-like you are "just using Reason".
+like you are "just using ReScript".
 
 ## How to use _ReScript React Native_ ?
 
