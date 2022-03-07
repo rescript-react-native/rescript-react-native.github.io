@@ -23,6 +23,7 @@
   top: 10%;
   left: 10%;
   opacity: 0.15;
+  pointer-events: none;
 }
 
 .buttons {
