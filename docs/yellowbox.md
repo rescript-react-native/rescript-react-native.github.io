@@ -25,5 +25,5 @@ ignoreWarnings: array(string) => unit
 YellowBox.ignoreWarnings([
   "Possible Unhandled Promise Rejection",
   "Remote debugger",
-]);
+])
 ```

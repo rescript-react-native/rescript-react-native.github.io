@@ -88,7 +88,7 @@ isScreenReaderEnabled: unit => Js.Promise.t(bool)
 
 To set accessibility focus to a React component, identified by its `nodeHandle`.
 On Android, this is equivalent to
-`UIManager.sendAccessibilityEvent(reactTag, UIManager.AccessibilityEventTypes.typeViewFocused)`;
+`UIManager.sendAccessibilityEvent(reactTag, UIManager.AccessibilityEventTypes.typeViewFocused)`
 
 ```rescript
 setAccessibilityFocus: NativeTypes.nodeHandle => unit

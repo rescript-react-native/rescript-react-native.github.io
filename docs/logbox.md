@@ -21,7 +21,7 @@ ignoreLogs: array(string) => unit
 > example
 
 ```rescript
-open ReactNative;
+open ReactNative
 
 LogBox.ignoreLogs([
   "Require cycle:",
@@ -29,7 +29,7 @@ LogBox.ignoreLogs([
   "Accessing view manager configs",
   "Warning: componentWillReceiveProps",
   "Warning: componentWillMount",
-]);
+])
 ```
 
 ## `ignoreAllLogs`
@@ -47,7 +47,7 @@ ignoreAllLogs: unit => unit
 > example
 
 ```rescript
-open ReactNative;
+open ReactNative
 
-LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs()
 ```

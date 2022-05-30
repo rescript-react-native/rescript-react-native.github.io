@@ -16,7 +16,7 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 ### JSX String
 
 ```rescript
-<Text> "Hello, world!"->React.string </Text>
+<Text> {"Hello, world!"->React.string} </Text>
 ```
 
 ## JSX Number (int)
@@ -31,9 +31,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 
 ```rescript
 <Text>
-  42
+  {42
   ->Js.Int.toString
-  ->React.string
+  ->React.string}
 </Text>
 ```
 
@@ -49,9 +49,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 
 ```rescript
 <Text>
-  4.2
+  {4.2
   ->Js.Float.toString
-  ->React.string
+  ->React.string}
 </Text>
 ```
 
@@ -62,7 +62,7 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 ```javascript
 {items.map((item, i) =>
   <Text key={i++item}>
-    item
+    {item}
   </Text>
 )}
 ```
@@ -74,7 +74,7 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 ->Belt.Array.mapWithIndex((item, index) =>
   <Text
     key=((index->Js.Int.toString)++item)>
-    item->React.string
+    {item->React.string}
   </Text>
   )
 ->React.array}
@@ -120,9 +120,9 @@ _Recommended: Assuming `something` is an
   something
   ->Belt.Option.map(thing =>
     <Text>
-      thing
+      {thing
       ->Js.String.toUpperCase
-      ->React.string
+      ->React.string}
     </Text>
   )
   ->Belt.Option.getWithDefault(React.null)
@@ -138,9 +138,9 @@ _If you have to work with JavaScript/JSON: Assuming `something` is a JavaScript
   ->Js.Nullable.toOption /* convert undefined || string  as option(string) */
   ->Belt.Option.map(thing =>
     <Text>
-      thing
+      {thing
       ->Js.String.toUpperCase
-      ->React.string
+      ->React.string}
     </Text>
   )
   ->Belt.Option.getWithDefault(React.null)
@@ -179,35 +179,32 @@ console.log(StyleSheet.flatten([styles.container]));
 ### ReScript React Native StyleSheet
 
 ```rescript
-open ReactNative;
+open ReactNative
+open ReactNative.Style // this is useful since all units & style methods comes from Style module
 
 let styles =
-  Style.(
-  /* = open Style; just between ()*/
-  /* this is useful since all units & style methods comes from Style module */
-    StyleSheet.create({
-      "container":
-        viewStyle(
-          ~maxHeight=600.->dp,
-          ~width=80.->pct,
-          ~justifyContent=`flexStart,
-          ~alignItems=`center,
-          ~margin=auto,
-          (),
-        ),
-      "cornerThing":
-        viewStyle(
-          ~position=`absolute,
-          ~top=100.->dp,
-          ~right=(-20.)->dp,
-          ~transform=[|rotate(~rotate=4.->deg)|],
-          (),
-        ),
-      "text": textStyle(~textTransform=`uppercase, ()),
-    })
-  );
+  {
+    "container":
+      viewStyle(
+        ~maxHeight=600.->dp,
+        ~width=80.->pct,
+        ~justifyContent=`flexStart,
+        ~alignItems=`center,
+        ~margin=auto,
+        (),
+      ),
+    "cornerThing":
+      viewStyle(
+        ~position=`absolute,
+        ~top=100.->dp,
+        ~right=(-20.)->dp,
+        ~transform=[|rotate(~rotate=4.->deg)|],
+        (),
+      ),
+    "text": textStyle(~textTransform=`uppercase, ()),
+  }->StyleSheet.create
 
-Js.log(StyleSheet.flatten([|styles##container|]));
+Js.log(StyleSheet.flatten([|styles##container|]))
 ```
 
 ## Concatened styles
@@ -221,11 +218,13 @@ Js.log(StyleSheet.flatten([|styles##container|]));
 ### Concatened styles
 
 ```rescript
+open ReactNative.Style
+
 <View
-  style=Style.(array([|
+  style={array([|
     styles##container,
     styles##containerAdditionalStyles
-  |]))
+  |])}
 />
 ```
 
@@ -246,12 +245,14 @@ Js.log(StyleSheet.flatten([|styles##container|]));
 ### Optional styles
 
 ```rescript
+open ReactNative.Style
+
 <View
-  style=Style.(arrayOption([|
+  style={arrayOption([|
     Some(styles##container),
     condition ? Some(styles##containerAdditionalStyles) : None,
     condition2 ? Some(viewStyle(~width=40.->dp, ())) : None,
-  |]))
+  |])}
 />
 ```
 
@@ -285,19 +286,20 @@ export default class HelloWorld extends Component {
 
 ```rescript
 /* App.res */
-open Belt;
-open ReactNative;
+open Belt
+open ReactNative
+open ReactNative.Style
 
 [@react.component]
 let make = (~name=?) => {
   <View
-    style=Style.(
+    style={
       viewStyle(~flex=1., ~justifyContent=`center, ~alignItems=`center, ())
-    )>
+    }>
     <Text>
       {("Hello, " ++ name->Option.getWithDefault("world") ++ "!")
        ->React.string}
     </Text>
-  </View>;
-};
+  </View>
+}
 ```

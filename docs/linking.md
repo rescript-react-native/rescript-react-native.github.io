@@ -22,7 +22,7 @@ external extra: (~key: string, ~value: 'a) => extra
 ### `url`
 
 ```rescript
-type url = {url: string};
+type url = {url: string}
 ```
 
 ## Methods
