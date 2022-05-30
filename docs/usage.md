@@ -7,7 +7,7 @@ When `rescript`, `@rescript/react` and `rescript-react-native` are installed, yo
 can run the following command
 
 ```console
-yarn bsb -make-world
+npm run rescript
 ```
 
 ⚠️ _If this process looks fast to you, don't be surprised, that's because ReScript is fast!_
@@ -51,17 +51,19 @@ extension if you have existing JavaScript covered by Flow.
 ⚠️ If you don’t want to use VSCode, we still recommend you to
 [get a ReScript editor plugin](https://rescript-lang.org/docs/manual/latest/editor-plugins).
 
-By having an IDE that handle ReScript compilation, you will not have to run a
-command in the terminal to handle this & will just have to follow the standard
+🎉 **By having an IDE that handle ReScript compilation, you will not have to run a
+command in the terminal** to handle this & will just have to follow the standard
 React Native workflow, your ReScript files being compiled to JavaScript.
 
-You will also have inline errors & much more feature that won't be provided by
-using a CLI workflow.
+_You will also have inline errors & much more feature that won't be provided by
+using a CLI workflow._
 
 ## Vscode workflow
 
 When you open VSCode with the ReScript plugin, you won't have to do anything.
-The plugin will detect ReScript & will offer you to handle compilation.
+The plugin will detect ReScript & will offer you to handle compilation by just clicking a button.
+
+![VSCode ReScript plugin](/usage/vscode-alert.png)
 
 ⛑ _Even if you decide to use Vscode or a smiliar IDE to ease your day to day
 development workflow, you should have a look to CLI workflow so you know how it
@@ -73,35 +75,29 @@ When you use React Native, you usually always have a terminal opened around with
 Metro Bundler running, which bundle the JavaScript files.
 
 Now you need to also have a process watching for your ReScript files to compile
-then to JavaScript. The easiest way is to rely on ReScript `bsb` watch
+then to JavaScript. The easiest way is to rely on ReScript `rescript` watch
 option `-w`:
 
 ```console
-yarn bsb -make-world -w
+npm run rescript build -w
 ```
 
-If you are not familiar with ReScript `bsb` you should know that you might
+If you are not familiar with ReScript `rescript` you should know that you might
 sometimes have weird compilation errors due to outdated build artifacts. This
 should not happen often but in case you are facing something weird, you can try
-using `bsb` `-clean-world` option
+using `rescript` `clean` option
 
 ```console
-yarn bsb -clean-world
-```
-
-On a daily basis, you can use this complete command that will clean, build &
-watch for changes
-
-```console
-yarn bsb -clean-world -make-world -w
+npm run rescript clean
 ```
 
 You might want to add this two commands in your `package.json` scripts:
 
 ```json
   "scripts": {
-    "re:build": "bsb -clean-world -make-world",
-    "re:watch": "bsb -clean-world -make-world -w",
+    "res:clean": "rescript clean",
+    "res:build": "rescript build",
+    "res:watch": "rescript build -w",
     "start": "react-native start",
     "ios": "react-native run-ios",
     "android": "react-native run-android",
@@ -118,7 +114,7 @@ workflow
 **In one terminal:**
 
 ```console
-yarn re:watch
+npm run res:watch
 ```
 
 As soon as `.res` files are being compiled to `.bs.js`, you can either start the
@@ -129,13 +125,13 @@ are unfamiliar with _Android Studio_, you might be interested by
 **In another terminal:**
 
 ```console
-yarn ios
+npm run ios
 ```
 
 or
 
 ```console
-yarn android
+npm run android
 ```
 
 This commands should open up a virtual device & start React Native
@@ -150,7 +146,7 @@ Now you can start coding by editing files in `src/`!
 just run**
 
 ```console
-yarn start
+npm start
 ```
 
 This avoid rebuilding the entire native parts & will just start React Native
@@ -162,18 +158,14 @@ metro bundler.
 
 ### Using JavaScript components from Reason
 
-@todo
-
-Meanwhile, check out
+Check out
 [ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js).
 
 You can also browse the source of
-[rescript-react-native](https://github.com/rescript-react-native/rescript-react-native/tree/master/src)
+[rescript-react-native](https://github.com/rescript-react-native/rescript-react-native/tree/main/src)
 because that's exactly what this project is doing!
 
 ### Using ReScript React Native components from JavaScript
 
-@todo
-
-Meanwhile, check out
+Check out
 [ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js)

@@ -34,7 +34,7 @@ export { app as default } from "./src/App.bs.js";
 ## `./src/App.res`
 
 Please directly grab the
-[App.res](https://github.com/rescript-react-native/template/blob/master/template/src/App.res)
+[App.res](https://github.com/rescript-react-native/template/blob/main/template/src/App.res)
 of our template, which will match React Native default _Hello World_!
 
 ### Differences with React Native JavaScript

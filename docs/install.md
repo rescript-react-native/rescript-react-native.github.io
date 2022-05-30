@@ -60,8 +60,8 @@ the compilation process generate normal JavaScript.
 Go into your project root & then install the requirements:
 
 ```console
-yarn add rescript --dev
-yarn add @rescript/react rescript-react-native
+npm install rescript --save-dev
+npm install @rescript/react rescript-react-native
 ```
 
 Then create a file named `bsconfig.json` at the same level at your

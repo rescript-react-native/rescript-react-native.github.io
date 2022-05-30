@@ -1,7 +1,7 @@
 ---
 id: event
 title: Event
-officialDoc: https://github.com/facebook/react-native/blob/master/Libraries/Types/CoreEventTypes.js
+officialDoc: https://github.com/facebook/react-native/blob/main/Libraries/Types/CoreEventTypes.js
 ---
 
 These are the types of objects returned in `Event` callbacks. Types are
