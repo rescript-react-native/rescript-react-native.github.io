@@ -207,15 +207,15 @@ let styles =
 Js.log(StyleSheet.flatten([|styles##container|]))
 ```
 
-## Concatened styles
+## Concatenated styles
 
-### JavaScript Concatened styles
+### JavaScript Concatenated styles
 
 ```javascript
 <View style={[styles.container, styles.containerAdditionalStyles]} />
 ```
 
-### Concatened styles
+### Concatenated styles
 
 ```rescript
 open ReactNative.Style
