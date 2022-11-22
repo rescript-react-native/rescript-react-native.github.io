@@ -9,6 +9,6 @@ wip: true
 ```res
 open ReactNative                                                                                                          
                                                                                                  
-<Button title={"Fazer Nova venda"} onPress={_ => Js.log("tes"->React.string")} />
+<Button title={"Click me"} onPress={_ => Js.log("tes")} />
 ```
 
