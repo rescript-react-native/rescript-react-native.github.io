@@ -39,7 +39,7 @@ let styles = {
     "container": viewStyle(
       ~maxHeight=600.->dp,
       ~width=80.->pct,
-      ~justifyContent=#flexStart,
+      ~justifyContent=#"flex-start",
       ~alignItems=#center,
       ~margin=auto,
       (),
@@ -163,12 +163,12 @@ This function accepts all React Native styles below:
 
 Accepts one of the following values:
 
-- `` `flexStart `` (default)
-- `` `flexEnd ``
-- `` `center ``
-- `` `stretch ``
-- `` `spaceAround ``
-- `` `spaceBetween ``
+- `` #"flex-start" `` (default)
+- `` #"flex-end" ``
+- `` #center ``
+- `` #stretch ``
+- `` #"space-around" ``
+- `` #"space-between" ``
 
 Controls how rows align in the cross direction, overriding the `alignContent` of
 the parent.
@@ -180,11 +180,11 @@ the parent.
 
 Accepts one of the following values:
 
-- `` `flexStart ``
-- `` `flexEnd ``
-- `` `center ``
-- `` `stretch `` (default)
-- `` `baseline ``
+- `` #"flex-start" ``
+- `` #"flex-end" ``
+- `` #center ``
+- `` #stretch `` (default)
+- `` #baseline ``
 
 Aligns children in the cross direction. For example, if children are flowing
 vertically, `alignItems` controls how they align horizontally.
@@ -196,12 +196,12 @@ vertically, `alignItems` controls how they align horizontally.
 
 Accepts one of the following values:
 
-- `` `auto `` (default)
-- `` `flexStart ``
-- `` `flexEnd ``
-- `` `center ``
-- `` `stretch ``
-- `` `baseline ``
+- `` #auto `` (default)
+- `` #"flex-start" ``
+- `` #"flex-end" ``
+- `` #center ``
+- `` #stretch ``
+- `` #baseline ``
 
 Controls how a child aligns in the cross direction, overriding the `alignItems`
 of the parent.
@@ -241,12 +241,12 @@ Number of logical pixels to offset the bottom edge of this component.
 
 Accepts one of the following values:
 
-- `` `inherit_ `` (default)
-- `` `ltr ``
-- `` `rtl ``
+- `` #inherit `` (default)
+- `` #ltr ``
+- `` #rtl ``
 
 `direction` specifies the directional flow of the user interface. The default is
-`` `inherit_ ``, except for root node which will have value based on the current
+`` #inherit ``, except for root node which will have value based on the current
 locale.
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom)
@@ -260,8 +260,8 @@ Only for
 
 Accepts one of the following values:
 
-- `` `flex `` (default)
-- `` `none ``
+- `` #flex `` (default)
+- `` #none ``
 
 Sets the display type of this component. It works similarly to `display` in CSS,
 but only supports `flex` and `none`.
@@ -312,10 +312,10 @@ Accepts a `margin`.
 
 Accepts one of the following values:
 
-- `` `row ``
-- `` `rowReverse ``
-- `` `column `` (default)
-- `` `columnReverse ``
+- `` #row ``
+- `` #"row-reverse" ``
+- `` #column `` (default)
+- `` #"column-reverse" ``
 
 `flexDirection` controls which directions children of a container go. `row` goes
 left to right, `column` goes top to bottom, and you may be able to guess what
@@ -342,8 +342,8 @@ Accepts a `float`.
 
 Accepts one of the following values:
 
-- `` `wrap `` (default)
-- `` `nowrap ``
+- `` #wrap `` (default)
+- `` #nowrap ``
 
 `flexWrap` controls whether children can wrap around after they hit the end of a
 flex container.
@@ -364,12 +364,12 @@ sets the height of this component.
 
 Accepts one of the following values:
 
-- `` `flexStart `` (default)
-- `` `flexEnd ``
-- `` `center ``
-- `` `spaceAround ``
-- `` `spaceBetween ``
-- `` `spaceEvenly ``
+- `` #"flex-start" `` (default)
+- `` #"flex-end" ``
+- `` #center ``
+- `` #"space-around" ``
+- `` #"space-between" ``
+- `` #"space-evenly" ``
 
 `justifyContent` aligns children in the main direction. For example, if children
 are flowing vertically, `justifyContent` controls how they align vertically.
@@ -500,12 +500,12 @@ Minimum width for this component, in logical pixels.
 
 Accepts one of the following values:
 
-- `` `visible `` (default)
-- `` `hidden ``
-- `` `scroll ``
+- `` #visible `` (default)
+- `` #hidden ``
+- `` #scroll ``
 
-`overflow` controls how children are measured and displayed. `` `hidden ``
-causes views to be clipped while `` `scroll `` causes views to be measured
+`overflow` controls how children are measured and displayed. `` #hidden ``
+causes views to be clipped while `` #scroll `` causes views to be measured
 independently of their parents main axis.
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
@@ -588,8 +588,8 @@ Setting `paddingVertical` is like setting both of `paddingTop` and
 
 Accepts one of the following values:
 
-- `` `absolute ``
-- `` `relative `` (default)
+- `` #absolute ``
+- `` #relative `` (default)
 
 `position` in React Native is similar to regular CSS, but everything is set to
 `relative` by default, so `absolute` positioning is always just relative to the
@@ -815,8 +815,8 @@ style(~transform=[unsafeTransform({"translateZ": "0"})], ())
 
 Accepts one of the following values:
 
-- `` `visible ``
-- `` `hidden ``
+- `` #visible ``
+- `` #hidden ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility)
 
@@ -936,8 +936,9 @@ When direction is `rtl`, `borderStartWidth` is equivalent to `borderRightWidth`.
 
 Accepts one of the following values:
 
-- `` `solid `` (default)
-- `` `dotted ``
+- `` #solid `` (default)
+- `` #dotted ``
+- `` #dashed ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style)
 
@@ -1032,8 +1033,8 @@ Accepts a `float`.
 
 Accepts one of the following values:
 
-- `` `normal `` (default)
-- `` `italic ``
+- `` #normal `` (default)
+- `` #italic ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style)
 
@@ -1083,11 +1084,11 @@ Only accepts logical pixels.
 
 Accepts one of the following values:
 
-- `` `auto `` (default)
-- `` `left ``
-- `` `right ``
-- `` `center ``
-- `` `justify ``
+- `` #auto `` (default)
+- `` #left ``
+- `` #right ``
+- `` #center ``
+- `` #justify ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
 
@@ -1095,10 +1096,10 @@ Accepts one of the following values:
 
 Accepts one of the following values:
 
-- `` `auto `` (default)
-- `` `top ``
-- `` `bottom ``
-- `` `center ``
+- `` #auto `` (default)
+- `` #top ``
+- `` #bottom ``
+- `` #center ``
 
 #### `textDecorationColor`
 
@@ -1110,10 +1111,10 @@ Accepts a `Color.t` (`string`).
 
 Accepts one of the following values:
 
-- `` `none `` (default)
-- `` `underline ``
-- `` `lineThrough ``
-- `` `underlineLineThrough ``
+- `` #none `` (default)
+- `` #underline ``
+- `` #"line-through" ``
+- `` #"underline line-through" ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line)
 
@@ -1121,10 +1122,10 @@ Accepts one of the following values:
 
 Accepts one of the following values:
 
-- `` `solid ``
-- `` `double ``
-- `` `dotted ``
-- `` `dashed ``
+- `` #solid ``
+- `` #double ``
+- `` #dotted ``
+- `` #dashed ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style)
 
@@ -1156,10 +1157,10 @@ You can see it as CSS `text-shadow` blur radius.
 
 Accepts one of the following values:
 
-- `` `none `` (default)
-- `` `uppercase ``
-- `` `lowercase ``
-- `` `capitalize ``
+- `` #none `` (default)
+- `` #uppercase ``
+- `` #lowercase ``
+- `` #capitalize ``
 
 - [Web reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform)
 
@@ -1167,9 +1168,9 @@ Accepts one of the following values:
 
 Accepts one of the following values:
 
-- `` `auto `` (default)
-- `` `ltr ``
-- `` `rtl ``
+- `` #auto `` (default)
+- `` #ltr ``
+- `` #rtl ``
 
 ### Image Style Props
 
@@ -1177,11 +1178,11 @@ Accepts one of the following values:
 
 Accepts one of the following values:
 
-- `` `cover ``
-- `` `contain ``
-- `` `stretch ``
-- `` `repeat ``
-- `` `center ``
+- `` #cover ``
+- `` #contain ``
+- `` #stretch ``
+- `` #repeat ``
+- `` #center ``
 
 Similar to CSS `background-size` values
 
