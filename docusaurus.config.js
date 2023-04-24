@@ -12,7 +12,8 @@ module.exports = {
   projectName: "rescript-react-native.github.io",
   themeConfig: {
     algolia: {
-      apiKey: "958680e5ab5c10ae3ab9bfbb36d83d61",
+      appId: "rescript-react-native",
+      apiKey: "6e1574674c062e3d14ab7c888da88f4f",
       indexName: "rescript-react-native",
       // contextualSearch: true,
       // searchParameters: {},
