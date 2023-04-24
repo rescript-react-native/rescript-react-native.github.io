@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrescript_react_native_github_io=self.webpackChunkrescript_react_native_github_io||[]).push([[7266],{2489:e=>{e.exports=JSON.parse('{"label":"reason","permalink":"/blog/tags/reason","allTagsPath":"/blog/tags","count":1}')}}]);
