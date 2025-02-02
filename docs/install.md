@@ -35,6 +35,11 @@ npx @react-native-community/cli init --template @rescript-react-native/template 
 cd MyApp
 ```
 
+In case of errors, you can use this workaround to install it.
+```console
+mkdir MyApp && cd MyApp && npm init -y && npm install react@18.2.0 react-dom@18.2.0 rescript-react-native
+```
+
 💖 Your project is setup, you can just check
 [how to use _ReScript React Native_](/docs/usage/) right
 away!
