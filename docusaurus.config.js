@@ -1,12 +1,15 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-
+/** @type {import('@docusaurus/types').Config} */
 module.exports = {
   title: "ReScript React Native",
   tagline: "The safest way to build React Native apps",
   url: "https://rescript-react-native.github.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
+  },
   favicon: "favicon.ico",
   organizationName: "rescript-react-native",
   projectName: "rescript-react-native.github.io",
@@ -15,8 +18,6 @@ module.exports = {
       appId: "W7CN8UK6UO",
       apiKey: "6e1574674c062e3d14ab7c888da88f4f",
       indexName: "rescript-react-native",
-      // contextualSearch: true,
-      // searchParameters: {},
     },
     navbar: {
       style: "dark",
@@ -29,7 +30,6 @@ module.exports = {
         {
           label: "Docs",
           to: "docs/",
-          activeBasePath: "docs",
           position: "left",
         },
         {
@@ -125,6 +125,8 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
+          onInlineAuthors: "ignore",
+          onUntruncatedBlogPosts: "ignore",
           editUrl:
             "https://github.com/rescript-react-native/rescript-react-native.github.io/edit/src/",
         },

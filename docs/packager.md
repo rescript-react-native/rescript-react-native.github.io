@@ -12,4 +12,4 @@ returns a type `Packager.required`.
 let asset = Packager.require("./some/asset.jpg")
 ```
 
-You can use this for component like [Image](docs/image/).
+You can use this for component like [Image](./image).

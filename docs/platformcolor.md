@@ -16,7 +16,7 @@ Functions to access native colors on the target platform by supplying the native
 get: Ios.t => Color.t
 ```
 
-#### Ios.get{n}
+#### Ios.get\{n\}
 
 Methods to send fallbacks.
 
@@ -46,9 +46,9 @@ See: [R.color](https://developer.android.com/reference/android/R.color)
 
 Allow to get color or attr.
 
-#### Android.get{n}
+#### Android.get\{n\}
 
-You may want to get multiple platform colors in case one is not supported by the system. In this case, you can use the `get{n}` function to retrieve the values. You can mix and match Android color and attributes in this call. The first value will be treated as default and rest will be treated as fallback.
+You may want to get multiple platform colors in case one is not supported by the system. In this case, you can use the `get\{n\}` function to retrieve the values. You can mix and match Android color and attributes in this call. The first value will be treated as default and rest will be treated as fallback.
 
 Defined up to 7 arguments.
 
@@ -60,15 +60,15 @@ Depending on platform & OS version (and for Android you can have user-defined at
 unsafeGet: string => Color.t
 ```
 
-### unsafeGet{n}
+### unsafeGet\{n\}
 
-The unsafe version of `get{n}` where a string can be passed in. This can be any Android resource query, for example: `?attr/colorPrimary` or `?android:attr/colorPrimary`, even resources defined within your Android app. The first value will be treated as default and rest will be treated as fallback.
+The unsafe version of `get\{n\}` where a string can be passed in. This can be any Android resource query, for example: `?attr/colorPrimary` or `?android:attr/colorPrimary`, even resources defined within your Android app. The first value will be treated as default and rest will be treated as fallback.
 
 Defined up to 7 arguments.
 
 ### unsafeGetMultiple
 
-The array version of `unsafeGet{n}` supporting arbitrary number of fallbacks.
+The array version of `unsafeGet\{n\}` supporting arbitrary number of fallbacks.
 
 ```rescript
 unsafeGetMultiple: array(string) => Color.t
