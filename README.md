@@ -6,6 +6,9 @@ This website is built using [Docusaurus 3](https://docusaurus.io/), a modern sta
 
 Requires **Node.js 18+** (see `.node-version`).
 
+Source lives on the **`src`** branch. GitHub Pages serves the built site from
+**`main`**.
+
 ## Installation
 
 ```console
@@ -18,7 +21,7 @@ npm install
 npm start
 ```
 
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server and opens a browser window. Most changes are reflected live without having to restart the server.
 
 ## Build
 
@@ -26,15 +29,34 @@ This command starts a local development server and open up a browser window. Mos
 npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This command generates static content into the `build` directory.
 
 ## Deployment
 
+### Automatic (recommended)
+
+Push to the **`src`** branch (or run the workflow manually). GitHub Actions
+builds the site and publishes `build/` to **`main`** (GitHub Pages).
+
+Workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
+
+### Manual
+
 ```console
-GIT_USER=<Your GitHub username> USE_SSH=true npm run deploy
+npm run deploy
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Requires push access to the repo (SSH recommended). Optional overrides:
+
+```console
+GIT_DEPLOY_REPO=git@github.com:rescript-react-native/rescript-react-native.github.io.git \
+GIT_USER_NAME="Your Name" \
+GIT_USER_EMAIL="you@example.com" \
+npm run deploy
+```
+
+> Do not use `docusaurus deploy` / a `gh-pages` branch for this repo — Pages is
+> configured on `main`.
 
 ---
 
