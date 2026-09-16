@@ -5,12 +5,12 @@ title: Components
 
 React Native provides a number of built-in Core Componentsready for you to use in your app. You can find them all in the left sidebar (or menu above, if you are on a narrow screen). If you're not sure where to get started, take a look at the following categories:
 
-- [Basic Components](components#basic-components)
-- [User Interface](components#user-interface)
-- [List Views](components#list-views)
-- [Android-specific](components#android-components)
-- [iOS-specific](components#ios-components)
-- [Others](components#others)
+- [Basic Components](#basic-components)
+- [User Interface](#user-interface)
+- [List Views](#list-views)
+- [Android-specific](#android-components-and-apis)
+- [iOS-specific](#ios-components-and-apis)
+- [Others](#others)
 
 <!-- todo >
 You're not limited to the components and APIs bundled with React Native. React Native has a community of thousands of developers. If you're looking for a library that does something specific, please refer to [this guide about finding libraries](libraries#finding-libraries).

@@ -31,6 +31,10 @@ bindings for React Native.
 On your side, you write ReScript code that use the `ReactNative` module exposed by
 `rescript-react-native` package that you will find on `npm`.
 
+The current major line is **`0.84`**, aligned with React Native **0.84**,
+ReScript **12**, and `@rescript/react` **0.15**. See
+[installation](/docs/install/) for details.
+
 ReScript will compile this code to safe JavaScript that React Native can
 consume like standard JavaScript.
 

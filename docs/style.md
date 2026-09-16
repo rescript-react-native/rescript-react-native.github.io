@@ -5,22 +5,17 @@ officialDoc: https://reactnative.dev/docs/style
 ---
 
 Styles accepted by most components (thanks to a `style` prop) are defined using
-style functions that prepare required object for React Native. The style names
-and values usually match how CSS works on the web, except names are written
-using camel casing, e.g `backgroundColor` rather than `background-color`.
+`Style.s`, which turns a style record into the object React Native expects. The
+style names and values usually match how CSS works on the web, except names are
+written using camel casing, e.g `backgroundColor` rather than `background-color`.
 
-The `style` prop accepts values returned by the `style()` constructor. That's
-the simplest way to pass styles. You can also pass an array or list of styles -
-the last style in the array has precedence, so you can use this to mix & inherit
-styles.
+The `style` prop accepts values returned by `Style.s({ ... })`. That's the
+simplest way to pass styles. You can also pass an array of styles — the last
+style in the array has precedence, so you can use this to mix & inherit styles.
 
 ⚠️ _Note that when a component grows in complexity, it is often cleaner to use
 [`StyleSheet.create`](/docs/stylesheet/#create) to define several styles in one
 place_.
-
-We have made different style constructors because React Native have various
-components that accept different styles props. For example `View` doesn't accept
-`color` (only `Text` does).
 
 ## Table of Contents
 
@@ -32,41 +27,34 @@ Since an example is worth a thousand words...
 
 ```rescript
 open ReactNative
+open Style
 
-let styles = {
-  open Style
-  StyleSheet.create({
-    "container": viewStyle(
-      ~maxHeight=600.->dp,
-      ~width=80.->pct,
-      ~justifyContent=#"flex-start",
-      ~alignItems=#center,
-      ~margin=auto,
-      (),
-    ),
-    "cornerThing": viewStyle(
-      ~position=#absolute,
-      ~top=100.->dp,
-      ~right=-20.->dp,
-      ~transform=[rotate(~rotate=4.->deg)],
-      (),
-    ),
-    "text": textStyle(~textTransform=#uppercase, ()),
-  })
-}
+let styles = StyleSheet.create({
+  "container": s({
+    maxHeight: 600.->dp,
+    width: 80.->pct,
+    justifyContent: #"flex-start",
+    alignItems: #center,
+    margin: auto,
+  }),
+  "cornerThing": s({
+    position: #absolute,
+    top: 100.->dp,
+    right: -20.->dp,
+    transform: [rotate(~rotate=4.->deg)],
+  }),
+  "text": s({textTransform: #uppercase}),
+})
 
 @react.component
 let make = (~isSomething) =>
   <View style={styles["container"]}>
     <View style={styles["cornerThing"]}>
       <Text
-        style={
-          open Style
-          arrayOption([
-            Some(styles["text"]),
-            isSomething ? Some(style(~opacity=0.05, ())) : None,
-          ])
-        }
+        style={arrayOption([
+          Some(styles["text"]),
+          isSomething ? Some(s({opacity: 0.05})) : None,
+        ])}
       />
     </View>
   </View>
@@ -81,18 +69,20 @@ density-independant pixels, (`dp` function - also known as logical pixels),
 percentage (`pct` function) or also `auto` (inline string, edge case for
 `margin`).
 
-As soon as `Style` module is open, you can make `size` in various ways as you
-can see in these random examples
+As soon as `Style` module is open, you can make `size` values in various ways:
 
-- `~height=10.5->dp` (= `~height=dp(10.5)`)
-- `~width=55.->pct` (= `~width=pct(55.)`)
-- `~margin=auto`
+- `height: 10.5->dp` (= `height: dp(10.5)`)
+- `width: 55.->pct` (= `width: pct(55.)`)
+- `margin: auto`
 
 ### `offset`
 
-`offset` is used for `shadowOffset` & `textShadowOffset`.
+`offset` is used for `shadowOffset` & `textShadowOffset`. It is a
+`Layout.size` record:
 
-Eg: `~shadowOffset=offset(~height=2., ~width=4.)`
+```rescript
+~shadowOffset={width: 4., height: 2.}
+```
 
 ### `angle`
 
@@ -104,15 +94,18 @@ or in radians (`rad` function):
 
 ## Style Functions
 
-### `Style.style`
+### `Style.s`
 
-For convenience, this function allows you to prepare a style object with all
-styles available in React Native. The nice side of this is that you can use this
-function & not think about what component is going to use it. On the other hand,
-this function can trigger React Native error screen (eg: if you pass `color` to
-a `View` component).
+`Style.s` is the main constructor: pass a style record and get a `Style.t`
+usable in a `style` prop.
 
-`style` accepts all the Style Props:
+```rescript
+open Style
+
+let box = s({flex: 1., backgroundColor: "white", padding: 16.->dp})
+```
+
+The record can include any of the Style Props documented below:
 
 - [Layout style props](#layout-style-props)
 - [Shadow style props](#shadow-style-props)
@@ -121,37 +114,15 @@ a `View` component).
 - [Text style props](#text-style-props)
 - [Image style props](#image-style-props)
 
-⚠️ _Internally, React Native codebase types for this function are called
-`____DangerouslyImpreciseStyle_Internal`. That's why we created new functions:
-[`viewStyle`](#style-viewstyle), [`textStyle`](#style-textstyle) &
-[`imageStyle`](#style-imagestyle)_.
+⚠️ Passing a text-only prop like `color` to a `View` can still trigger a React
+Native error at runtime — prefer only the props relevant to the component you
+style.
 
-### `Style.viewStyle`
+### Helpers
 
-This function accepts all React Native styles below:
-
-- [Layout style props](#layout-style-props)
-- [Shadow style props](#shadow-style-props)
-- [Transform style props](#transform-style-props)
-- [View style props](#view-style-props)
-
-### `Style.textStyle`
-
-This function accepts all React Native styles below:
-
-- [Layout style props](#layout-style-props)
-- [Shadow style props](#shadow-style-props)
-- [Transform style props](#transform-style-props)
-- [Text style props](#text-style-props)
-
-### `Style.imageStyle`
-
-This function accepts all React Native styles below:
-
-- [Layout style props](#layout-style-props)
-- [Shadow style props](#shad@ow-style-props)
-- [Transform style props](#transform-style-props)
-- [Image style props](#image-style-props)
+- `Style.array` — concatenate styles (same idea as a JS style array)
+- `Style.arrayOption` — concatenate optional styles
+- `Style.empty` — empty style value
 
 ## Style Props
 
@@ -739,8 +710,8 @@ Keep in mind that order or transformation matters.
 - `scale(~scale=float)`
 - `scaleX(~scaleX=float)`
 - `scaleY(~scaleY=float)`
-- `translateX(~translateX=float)`
-- `translateY(~translateY=float)`
+- `translateX(~translateX=size)`
+- `translateY(~translateY=size)`
 - `skewX(~skewX=angle)`
 - `skewY(~skewY=angle)`
 
@@ -750,23 +721,24 @@ Keep in mind that order or transformation matters.
 
 ```rescript
 open Style
-style(
-  ~transform=[
+
+s({
+  transform: [
     perspective(~perspective=1000.),
     rotateX(~rotateX=20.->deg),
     rotateZ(~rotateZ=0.5->rad),
     scale(~scale=0.95),
   ],
-  (),
-)
+})
 ```
 
 ###### Transform with an animated value
 
 ```rescript
 open Style
-style(
-  ~transform=[
+
+s({
+  transform: [
     rotateY(
       ~rotateY={
         open Animated.Interpolation
@@ -777,7 +749,6 @@ style(
             ~extrapolateLeft=#clamp,
             ~extrapolate=#identity,
             ~extrapolateRight=#extend,
-            (),
           ),
         )
       }->Animated.StyleProp.angle,
@@ -789,14 +760,12 @@ style(
           config(
             ~inputRange=[0., 200.],
             ~outputRange=[0.8, 0.75]->fromFloatArray,
-            (),
           ),
         )
       }->Animated.StyleProp.float,
     ),
   ],
-  (),
-)
+})
 ```
 
 If you need something unsupported by this binding, you can use
@@ -804,7 +773,8 @@ If you need something unsupported by this binding, you can use
 
 ```rescript
 open Style
-style(~transform=[unsafeTransform({"translateZ": "0"})], ())
+
+s({transform: [unsafeTransform({"translateZ": "0"})]})
 ```
 
 ### View Style Props
@@ -1208,6 +1178,7 @@ following
 
 ```rescript
 open Style
+
 unsafeStyle({"position": "fixed", "top": "5em", "left": 0, "right": 0})
 ```
 
@@ -1215,7 +1186,8 @@ If you only want to add some properties to a safe style, you can also do
 
 ```rescript
 open Style
-style(~left=0.->dp, ~right=0.->dp, ())->unsafeAddStyle({
+
+s({left: 0.->dp, right: 0.->dp})->unsafeAddStyle({
   "position": "fixed",
   "top": "5em",
 })
@@ -1230,14 +1202,7 @@ style(~left=0.->dp, ~right=0.->dp, ())->unsafeAddStyle({
 Accepts an array of styles as a single style.
 
 ```rescript
-<View
-  style={
-    open Style
-    array([styles["thing"], styles["whatever"]])
-  }
-/>
-
-
+<View style={Style.array([styles["thing"], styles["whatever"]])} />
 ```
 
 ### `Style.arrayOption`
@@ -1245,15 +1210,14 @@ Accepts an array of styles as a single style.
 Accepts an array of optional styles as a single style.
 
 ```rescript
+open Style
+
 <View
-  style={
-    open Style
-    arrayOption([
-      Some(styles["thing"]),
-      Some(styles["whatever"]),
-      optionalStyle,
-      cond ? Some(style(~prop=value, ())) : None,
-    ])
-  }
+  style={arrayOption([
+    Some(styles["thing"]),
+    Some(styles["whatever"]),
+    optionalStyle,
+    cond ? Some(s({opacity: 0.5})) : None,
+  ])}
 />
 ```

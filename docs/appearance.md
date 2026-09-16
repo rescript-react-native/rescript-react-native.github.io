@@ -11,40 +11,49 @@ dark).
 
 ### `t`
 
-Returned from the `getColorScheme` method or `useColorScheme` hook, wrapped in
-`Js.Null.t` to handle the allowed value `null`, which is returned when no
-preference has been indicated. Other allowed values are `"dark"` and `"light"`,
-encapsulated as
-
 ```rescript
-Appearance.dark
-Appearance.light
+type t = [#dark | #light]
 ```
 
-These values may be compared against what is returned by the method or hook, as
-in the below example:
+Returned from `getColorScheme` / `useColorScheme` as `option<t>` (`None` when no
+preference is available).
 
 ```rescript
-Appearance.getColorScheme() === Js.Null.return(Appearance.dark)
+Appearance.getColorScheme() == Some(#dark)
 ```
 
 ## Methods
 
 ### `getColorScheme`
 
-To query the current preferred color scheme. Note that the preference may be
-updated later, either through user action or automatically (e.g. on a schedule
-based on the time of day).
+Query the current preferred color scheme. Note that the preference may be
+updated later, either through user action or automatically.
 
 ```rescript
-getColorScheme: unit => Js.Null(t)
+getColorScheme: unit => option<t>
 ```
 
 ### `useColorScheme`
 
-To query the current preferred color scheme and subscribe to color scheme
-updates.
+Query the current preferred color scheme and subscribe to updates (React hook).
 
 ```rescript
-useColorScheme: unit => Js.Null(t)
+useColorScheme: unit => option<t>
+```
+
+### `setColorScheme`
+
+Force the app color scheme.
+
+```rescript
+setColorScheme: t => unit
+```
+
+### `addChangeListener`
+
+Subscribe to appearance changes. Returns an
+[`EventSubscription`](/docs/eventsubscription).
+
+```rescript
+addChangeListener: (unit => unit) => EventSubscription.t
 ```

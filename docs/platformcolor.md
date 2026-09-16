@@ -4,91 +4,86 @@ title: PlatformColor
 officialDoc: https://reactnative.dev/docs/platformcolor
 ---
 
-Functions to access native colors on the target platform by supplying the native color’s corresponding value.
+Functions to access native colors on the target platform by supplying the native
+color’s corresponding value.
 
-## Ios
+## `PlatformColor.ios`
 
-### Ios.get
-
-`Ios.get` is used to get color information from UI Element Colors.
+`PlatformColor.ios` is used to get color information from iOS UI Element Colors
+(and related UIKit colors).
 
 ```rescript
-get: Ios.t => Color.t
+ios: array<Ios.t> => Color.t
 ```
 
-#### Ios.get\{n\}
-
-Methods to send fallbacks.
-
-## Android
-
-### Android.getAttr
-
-`Android.getAttr` is used to get color information from android attributes.
+Pass one or more fallbacks; the first supported value wins:
 
 ```rescript
-getAttr: Android.t => Color.t
+PlatformColor.ios([#label, #black])
 ```
 
-See: [R.attr](https://developer.android.com/reference/android/R.attr)
+## `PlatformColor.android`
 
-### Android.getColor
-
-`Android.getColor` is used to get color information from android colors.
+`PlatformColor.android` is used to get color information from Android colors or
+attributes.
 
 ```rescript
-getColor: Android.t => Color.t
+android: array<Android.t> => Color.t
 ```
 
-See: [R.color](https://developer.android.com/reference/android/R.color)
+Colors use the full resource form (e.g. `#"@android:color/primary_text_dark"`).
+Attributes use forms like `#"?android:attr/colorPrimary"`.
 
-### Android.get
-
-Allow to get color or attr.
-
-#### Android.get\{n\}
-
-You may want to get multiple platform colors in case one is not supported by the system. In this case, you can use the `get\{n\}` function to retrieve the values. You can mix and match Android color and attributes in this call. The first value will be treated as default and rest will be treated as fallback.
-
-Defined up to 7 arguments.
-
-## unsafeGet
-
-Depending on platform & OS version (and for Android you can have user-defined attrs for colors), this function is used for getting platform colors from strings.
+You may mix colors and attributes. The first value is treated as default and the
+rest as fallbacks:
 
 ```rescript
-unsafeGet: string => Color.t
+PlatformColor.android([
+  #"@android:color/primary_text_dark",
+  #"?android:attr/colorPrimary",
+])
 ```
 
-### unsafeGet\{n\}
+See also:
 
-The unsafe version of `get\{n\}` where a string can be passed in. This can be any Android resource query, for example: `?attr/colorPrimary` or `?android:attr/colorPrimary`, even resources defined within your Android app. The first value will be treated as default and rest will be treated as fallback.
+- [R.attr](https://developer.android.com/reference/android/R.attr)
+- [R.color](https://developer.android.com/reference/android/R.color)
 
-Defined up to 7 arguments.
+## `PlatformColor.unsafe`
 
-### unsafeGetMultiple
-
-The array version of `unsafeGet\{n\}` supporting arbitrary number of fallbacks.
+Depending on platform & OS version (and for Android you can have user-defined
+attrs for colors), this function is used for getting platform colors from
+strings.
 
 ```rescript
-unsafeGetMultiple: array(string) => Color.t
+unsafe: array<string> => Color.t
+```
+
+This can be any Android resource query, for example: `"?attr/colorPrimary"` or
+`"?android:attr/colorPrimary"`, even resources defined within your Android app.
+The first value will be treated as default and the rest as fallbacks.
+
+```rescript
+PlatformColor.unsafe(["?attr/colorPrimary", "?android:attr/colorPrimary"])
 ```
 
 ## Example
 
 ```rescript
 open ReactNative
-let styles = {
-  open Style
-  StyleSheet.create({
-    "container": style(
-      ~color=switch Platform.os {
-      | os if os == Platform.android =>
-        PlatformColor.Android.get2(#primary_text_dark, #colorPrimary)
-      | os if os == Platform.ios => PlatformColor.Ios.get(#label)
-      | _ => "black"
-      },
-    ),
-  })
-}
+open Style
+
+let styles = StyleSheet.create({
+  "container": s({
+    color: switch Platform.os {
+    | os if os == Platform.android =>
+      PlatformColor.android([
+        #"@android:color/primary_text_dark",
+        #"?android:attr/colorPrimary",
+      ])
+    | os if os == Platform.ios => PlatformColor.ios([#label])
+    | _ => "black"
+    },
+  }),
+})
 ```

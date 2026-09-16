@@ -19,6 +19,9 @@ module.exports = {
       apiKey: "6e1574674c062e3d14ab7c888da88f4f",
       indexName: "rescript-react-native",
     },
+    prism: {
+      additionalLanguages: ["rescript", "json", "bash"],
+    },
     navbar: {
       style: "dark",
       title: "ReScript React Native",

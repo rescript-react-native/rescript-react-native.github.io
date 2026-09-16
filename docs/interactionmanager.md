@@ -1,5 +1,19 @@
 ---
 id: interactionmanager
 title: InteractionManager
-wip: true
+officialDoc: https://reactnative.dev/docs/interactionmanager
 ---
+
+Schedule work to run after animations / interactions complete.
+
+```rescript
+InteractionManager.runAfterInteractions(() => {
+  // heavy work
+})
+
+let handle = InteractionManager.createInteractionHandle()
+// ...
+InteractionManager.clearInteractionHandle(handle)
+
+InteractionManager.setDeadline(100.)
+```

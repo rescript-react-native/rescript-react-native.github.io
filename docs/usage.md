@@ -4,110 +4,101 @@ title: Usage
 ---
 
 When `rescript`, `@rescript/react` and `rescript-react-native` are installed, you
-can run the following command
+can run:
 
 ```console
-npm run rescript
+npm run res:build
 ```
 
-⚠️ _If this process looks fast to you, don't be surprised, that's because ReScript is fast!_
+⚠️ _If this process looks fast to you, don't be surprised — ReScript is fast!_
 
-This command should compile all `.res` files to their `.bs.js` counterparts.
+This command compiles all `.res` files to their `.res.js` counterparts.
 
-This means if you have an `src/App.res` file, you should now have `src/App.bs.js`
-file too.
+This means if you have an `src/App.res` file, you should now have `src/App.res.js`
+as well.
 
 You may also notice some compilation artifacts:
 
-- `.bsb.lock`
-- `.merlin`
-- `lib/bs`
+- `lib/`
+- `*.res.js` / `*.res.js.map`
+- `.bsb.lock` (legacy lock file name still used by some tooling)
 
-You may want to gitignore all of these:
+You may want to gitignore these:
 
 ```
-*.bs.js
+lib/
+*.res.js
+*.res.js.map
 .bsb.lock
-.merlin
-lib/bs
 ```
 
-_If you used our template, it should be done already_.
+_If you used our template, this should already be done._
 
 ## Automate compilation of `*.res` files
 
-You have multipes way to not have to think about compilation for your daily
-workflow
+You have multiple ways to avoid thinking about compilation for your daily
+workflow.
 
 ## Compile ReScript files via IDE
 
-To get the best development experience possible, we recommend you to use
-[VSCode](https://code.visualstudio.com) with
-[ReScript plugin](https://marketplace.visualstudio.com/items?itemName=chenglou92.rescript-vscode)
-extension. Optionally you can add
-[Flow Language Server](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
-extension if you have existing JavaScript covered by Flow.
+To get the best development experience possible, we recommend
+[VSCode](https://code.visualstudio.com) with the
+[ReScript plugin](https://marketplace.visualstudio.com/items?itemName=chenglou92.rescript-vscode).
 
-⚠️ If you don’t want to use VSCode, we still recommend you to
+⚠️ If you don’t want to use VSCode, we still recommend you
 [get a ReScript editor plugin](https://rescript-lang.org/docs/manual/latest/editor-plugins).
 
-🎉 **By having an IDE that handle ReScript compilation, you will not have to run a
-command in the terminal** to handle this & will just have to follow the standard
+🎉 **By having an IDE that handles ReScript compilation, you will not have to run a
+command in the terminal** for day-to-day edits & can follow the standard
 React Native workflow, your ReScript files being compiled to JavaScript.
 
-_You will also have inline errors & much more feature that won't be provided by
-using a CLI workflow._
+_You will also have inline errors & more features than a pure CLI workflow._
 
-## Vscode workflow
+## VS Code workflow
 
-When you open VSCode with the ReScript plugin, you won't have to do anything.
+When you open VS Code with the ReScript plugin, you won't have to do anything.
 The plugin will detect ReScript & will offer you to handle compilation by just clicking a button.
 
 ![VSCode ReScript plugin](/usage/vscode-alert.png)
 
-⛑ _Even if you decide to use Vscode or a smiliar IDE to ease your day to day
-development workflow, you should have a look to CLI workflow so you know how it
+⛑ _Even if you decide to use VS Code or a similar IDE to ease your day to day
+development workflow, you should have a look at the CLI workflow so you know how it
 works._
 
 ### Compile ReScript files via CLI
 
-When you use React Native, you usually always have a terminal opened around with
-Metro Bundler running, which bundle the JavaScript files.
+When you use React Native, you usually always have a terminal opened with
+Metro Bundler running, which bundles the JavaScript files.
 
-Now you need to also have a process watching for your ReScript files to compile
-then to JavaScript. The easiest way is to rely on ReScript `rescript` watch
-option `-w`:
+You also need a process watching your ReScript files to compile them to
+JavaScript. The easiest way is to rely on ReScript's watch option `-w`:
 
 ```console
-npm run rescript build -w
+npm run res:watch
 ```
 
-If you are not familiar with ReScript `rescript` you should know that you might
+If you are not familiar with ReScript you should know that you might
 sometimes have weird compilation errors due to outdated build artifacts. This
-should not happen often but in case you are facing something weird, you can try
-using `rescript` `clean` option
+should not happen often but if you face something weird, try cleaning:
 
 ```console
-npm run rescript clean
+npm run res:clean
 ```
 
-You might want to add this two commands in your `package.json` scripts:
+Recommended `package.json` scripts (already included in the template):
 
 ```json
+{
   "scripts": {
     "res:clean": "rescript clean",
-    "res:build": "rescript build",
+    "res:build": "rescript",
     "res:watch": "rescript build -w",
     "start": "react-native start",
     "ios": "react-native run-ios",
-    "android": "react-native run-android",
+    "android": "react-native run-android"
   }
+}
 ```
-
-_Note: you probably have `start` already._
-
-If you are doing this change in your scripts, you can now use this development
-workflow
 
 #### CLI Development workflow
 
@@ -117,12 +108,16 @@ workflow
 npm run res:watch
 ```
 
-As soon as `.res` files are being compiled to `.bs.js`, you can either start the
-project on _iOS Simulator_ (included in _Xcode_) or an Android Emulator (if you
-are unfamiliar with _Android Studio_, you might be interested by
-[Genymotion](https://www.genymotion.com)).
+As soon as `.res` files are being compiled to `.res.js`, you can start Metro and
+the app:
 
 **In another terminal:**
+
+```console
+npm start
+```
+
+Then, in a third terminal (or after Metro is up):
 
 ```console
 npm run ios
@@ -134,13 +129,13 @@ or
 npm run android
 ```
 
-This commands should open up a virtual device & start React Native
-[metro bundler](https://github.com/facebook/metro). This packager will serves
-the compiled ReScript code to the React Native client.
+These commands should open a simulator/emulator & start React Native
+[Metro](https://github.com/facebook/metro). Metro serves the compiled ReScript
+code to the React Native client.
 
 Now you can start coding by editing files in `src/`!
 
-[Read more about starting the project in your environment of choice](https://reactnative.dev/docs/getting-started).
+[Read more about starting the project in your environment of choice](https://reactnative.dev/docs/set-up-your-environment).
 
 **Note: as soon as you have the app installed in a simulator/emulator, you can
 just run**
@@ -149,17 +144,17 @@ just run**
 npm start
 ```
 
-This avoid rebuilding the entire native parts & will just start React Native
-metro bundler.
+alongside `npm run res:watch`. This avoids rebuilding the entire native parts &
+will just start Metro.
 
 ---
 
 ## Interoperability with JavaScript
 
-### Using JavaScript components from Reason
+### Using JavaScript components from ReScript
 
 Check out
-[ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js).
+[ReScript _Import from/Export to JS_](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js).
 
 You can also browse the source of
 [rescript-react-native](https://github.com/rescript-react-native/rescript-react-native/tree/main/src)
@@ -168,4 +163,4 @@ because that's exactly what this project is doing!
 ### Using ReScript React Native components from JavaScript
 
 Check out
-[ReScript _Import from/Export to JS_ page](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js)
+[ReScript _Import from/Export to JS_](https://rescript-lang.org/docs/manual/latest/import-from-export-to-js).

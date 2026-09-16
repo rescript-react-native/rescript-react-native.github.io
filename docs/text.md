@@ -6,15 +6,13 @@ wip: true
 
 ## Example
 
-```res
-open ReactNative                                                                                                          
+```rescript
+open ReactNative
+open Style
 
-let styles = {                                                                                                            
-  open Style                                                                                                              
-  StyleSheet.create({                                                                                                     
-    "title": textStyle(~fontSize=24., ~fontWeight=#_600, ()),                                                             
-  })                                                                                                                      
-}                                                                                                                         
+let styles = StyleSheet.create({
+  "title": s({fontSize: 24., fontWeight: #_600}),
+})
 
-<Text style={styles["title"]}> {"Hello World"->React.string} </Text>                                                  
+<Text style={styles["title"]}> {"Hello World"->React.string} </Text>
 ```

@@ -30,11 +30,7 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 ### JSX Number (int)
 
 ```rescript
-<Text>
-  {42
-  ->Js.Int.toString
-  ->React.string}
-</Text>
+<Text> {Int.toString(42)->React.string} </Text>
 ```
 
 ## JSX Number (float)
@@ -48,11 +44,7 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 ### JSX Number (float)
 
 ```rescript
-<Text>
-  {4.2
-  ->Js.Float.toString
-  ->React.string}
-</Text>
+<Text> {Float.toString(4.2)->React.string} </Text>
 ```
 
 ## JSX Array (of string)
@@ -71,12 +63,9 @@ If you are not familiar with ReScript / Reason, be sure to check [ReScript Overv
 
 ```rescript
 {items
-->Belt.Array.mapWithIndex((item, index) =>
-  <Text
-    key=((index->Js.Int.toString)++item)>
-    {item->React.string}
-  </Text>
-  )
+->Array.mapWithIndex((item, index) =>
+  <Text key={Int.toString(index) ++ item}> {item->React.string} </Text>
+)
 ->React.array}
 ```
 
@@ -118,14 +107,10 @@ _Recommended: Assuming `something` is an
 ```rescript
 {
   something
-  ->Belt.Option.map(thing =>
-    <Text>
-      {thing
-      ->Js.String.toUpperCase
-      ->React.string}
-    </Text>
+  ->Option.map(thing =>
+    <Text> {thing->String.toUpperCase->React.string} </Text>
   )
-  ->Belt.Option.getWithDefault(React.null)
+  ->Option.getOr(React.null)
 }
 ```
 
@@ -135,15 +120,11 @@ _If you have to work with JavaScript/JSON: Assuming `something` is a JavaScript
 ```rescript
 {
   something
-  ->Js.Nullable.toOption /* convert undefined || string  as option(string) */
-  ->Belt.Option.map(thing =>
-    <Text>
-      {thing
-      ->Js.String.toUpperCase
-      ->React.string}
-    </Text>
+  ->Nullable.toOption
+  ->Option.map(thing =>
+    <Text> {thing->String.toUpperCase->React.string} </Text>
   )
-  ->Belt.Option.getWithDefault(React.null)
+  ->Option.getOr(React.null)
 }
 ```
 
@@ -180,31 +161,26 @@ console.log(StyleSheet.flatten([styles.container]));
 
 ```rescript
 open ReactNative
-open ReactNative.Style // this is useful since all units & style methods comes from Style module
+open Style // units & Style.s come from the Style module
 
-let styles =
-  {
-    "container":
-      viewStyle(
-        ~maxHeight=600.->dp,
-        ~width=80.->pct,
-        ~justifyContent=`flexStart,
-        ~alignItems=`center,
-        ~margin=auto,
-        (),
-      ),
-    "cornerThing":
-      viewStyle(
-        ~position=`absolute,
-        ~top=100.->dp,
-        ~right=(-20.)->dp,
-        ~transform=[|rotate(~rotate=4.->deg)|],
-        (),
-      ),
-    "text": textStyle(~textTransform=`uppercase, ()),
-  }->StyleSheet.create
+let styles = StyleSheet.create({
+  "container": s({
+    maxHeight: 600.->dp,
+    width: 80.->pct,
+    justifyContent: #"flex-start",
+    alignItems: #center,
+    margin: auto,
+  }),
+  "cornerThing": s({
+    position: #absolute,
+    top: 100.->dp,
+    right: -20.->dp,
+    transform: [rotate(~rotate=4.->deg)],
+  }),
+  "text": s({textTransform: #uppercase}),
+})
 
-Js.log(StyleSheet.flatten([|styles##container|]))
+Console.log(StyleSheet.flatten([styles["container"]]))
 ```
 
 ## Concatenated styles
@@ -218,14 +194,10 @@ Js.log(StyleSheet.flatten([|styles##container|]))
 ### Concatenated styles
 
 ```rescript
-open ReactNative.Style
+open ReactNative
+open Style
 
-<View
-  style={array([|
-    styles##container,
-    styles##containerAdditionalStyles
-  |])}
-/>
+<View style={array([styles["container"], styles["containerAdditionalStyles"]])} />
 ```
 
 ## Optional styles
@@ -245,14 +217,15 @@ open ReactNative.Style
 ### Optional styles
 
 ```rescript
-open ReactNative.Style
+open ReactNative
+open Style
 
 <View
-  style={arrayOption([|
-    Some(styles##container),
-    condition ? Some(styles##containerAdditionalStyles) : None,
-    condition2 ? Some(viewStyle(~width=40.->dp, ())) : None,
-  |])}
+  style={arrayOption([
+    Some(styles["container"]),
+    condition ? Some(styles["containerAdditionalStyles"]) : None,
+    condition2 ? Some(s({width: 40.->dp})) : None,
+  ])}
 />
 ```
 
@@ -262,23 +235,21 @@ open ReactNative.Style
 
 ```javascript
 /* App.js */
-import React, { Component } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 
-export default class HelloWorld extends Component {
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>Hello, {this.props.name || "world"}!</Text>
-      </View>
-    );
-  }
+export default function HelloWorld({ name }) {
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text>Hello, {name || "world"}!</Text>
+    </View>
+  );
 }
 ```
 
@@ -286,19 +257,14 @@ export default class HelloWorld extends Component {
 
 ```rescript
 /* App.res */
-open Belt
 open ReactNative
-open ReactNative.Style
+open Style
 
-[@react.component]
+@react.component
 let make = (~name=?) => {
-  <View
-    style={
-      viewStyle(~flex=1., ~justifyContent=`center, ~alignItems=`center, ())
-    }>
+  <View style={s({flex: 1., justifyContent: #center, alignItems: #center})}>
     <Text>
-      {("Hello, " ++ name->Option.getWithDefault("world") ++ "!")
-       ->React.string}
+      {("Hello, " ++ name->Option.getOr("world") ++ "!")->React.string}
     </Text>
   </View>
 }

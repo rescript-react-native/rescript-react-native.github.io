@@ -9,7 +9,7 @@ future.
 
 Please refer to [bindings](https://github.com/rescript-react-native/clipboard) for
 the replacement
-[community package](https://github.com/react-native-community/clipboard).
+[community package](https://github.com/react-native-clipboard/clipboard).
 
 ---
 
@@ -17,16 +17,15 @@ the replacement
 
 ### `getString`
 
-To attempt reading content from the Clipboard; resolves to a `string` if
-successful.
+Attempt reading content from the Clipboard.
 
 ```rescript
-getString: unit => Js.Promise.t(string)
+getString: unit => promise<string>
 ```
 
 ### `setString`
 
-To copy a `string` to the Clipbard.
+Copy a string to the Clipboard.
 
 ```rescript
 setString: string => unit

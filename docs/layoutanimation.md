@@ -131,8 +131,8 @@ type action = ToggleRegister
 let styles = {
   open Style
   StyleSheet.create({
-    "container": style(~flex=1., ~flexDirection=#column, ()),
-    "screen": style(~width=windowWidth->dp, ()),
+    "container": s({flex: 1., flexDirection: #column}),
+    "screen": s({width: windowWidth->dp}),
   })
 }
 
@@ -150,26 +150,22 @@ let make = () => {
         ),
       )
       // update of the state happens below:
-      {register: !state.registerà
+      {register: !state.register}
     }
   , {register: false})
 
   <View style={styles["container"]}>
     <View
-      style={
-        open Style
-        style(
-          ~flex=1.,
-          ~width=(2.0 *. windowWidth)->dp,
-          ~left=(state.register ? 0. : 0. -. windowWidth)->dp,
-          ~flexDirection=#row,
-          (),
-        )
-      }>
+      style={Style.s({
+        flex: 1.,
+        width: (2.0 *. windowWidth)->dp,
+        left: (state.register ? 0. : 0. -. windowWidth)->dp,
+        flexDirection: #row,
+      })}>
       <View style={styles["screen"]}> <Register /> </View>
       <View style={styles["screen"]}> <Login /> </View>
     </View>
-    <Button onPress={_ => dispatch(ToggleRegister)} title=`Toggle` />
+    <Button onPress={_ => dispatch(ToggleRegister)} title="Toggle" />
   </View>
 }
 ```

@@ -1,39 +1,43 @@
 ---
 id: scrollview
 title: ScrollView
-wip: true
+officialDoc: https://reactnative.dev/docs/scrollview
 ---
 
 ## Methods
 
 ### `scrollTo`
 
-Scrolls to a given `x`, `y` offset, either immediately, with a smooth animation,
-or, for Android only, a custom animation duration time.
+Scrolls to a given `x`, `y` offset, either immediately or with animation
+(`animated`). On Android you may also pass `duration`.
 
 ```rescript
-let scrollParams = (~x: float, ~y: float, ~animated: bool=?, ~duration: float=?, unit) => unit
+type scrollToOptions = {
+  x: float,
+  y: float,
+  animated?: bool,
+  duration?: float,
+}
 
-let scrollTo = (scrollView, scrollParams) => unit
+scrollTo: (element, scrollToOptions) => unit
 ```
 
-#### `scrollTo` Example
+#### Example
 
 ```rescript
 open ReactNative
 
 @react.component
 let make = () => {
-  let scrollViewRef = React.useRef(Js.Nullable.null)
+  let scrollViewRef = React.useRef(Nullable.null)
+
   <ScrollView ref={scrollViewRef->Ref.value}>
     <TouchableOpacity
       onPress={_ =>
-        switch scrollViewRef.current->Js.Nullable.toOption {
+        switch scrollViewRef.current->Nullable.toOption {
         | Some(scrollView) =>
-          scrollView->ScrollView.scrollTo(
-            ScrollView.scrollToParams(~x=0., ~y=0., ~animated=true, ()),
-          )
-        | _ => ()
+          scrollView->ScrollView.scrollTo({x: 0., y: 0., animated: true})
+        | None => ()
         }}>
       <Text> {"ScrollTo 0, 0"->React.string} </Text>
     </TouchableOpacity>
@@ -43,21 +47,21 @@ let make = () => {
 
 ### `scrollToEnd`
 
-Scrolls to the end of the `ScrollView` with an animation. If this is a vertical
-`ScrollView` scrolls to the bottom. If this is a horizontal `ScrollView` scrolls
-to the right.
+Scrolls to the end of the `ScrollView` (bottom for vertical, right for
+horizontal). Optional animation options:
 
 ```rescript
-let scrollToEnd = (scrollView) => unit
+type scrollToEndOptions = {animated?: bool, duration?: float}
+
+scrollToEnd: (element, ~options: scrollToEndOptions=?) => unit
 ```
 
-### `scrollToEndWithOptions`
+```rescript
+scrollView->ScrollView.scrollToEnd(~options={animated: true})
+```
 
-Similar to `scrollToEnd`, with options for animation or, for Android only
-duration.
+### `flashScrollIndicators`
 
 ```rescript
-let scrollToEndOptions = (~animated: bool=?, ~duration: float=?, unit) => unit
-
-let scrollToEndWithOptions = (scrollView, scrollParams) => unit
+flashScrollIndicators: element => unit
 ```

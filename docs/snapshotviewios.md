@@ -1,5 +1,7 @@
 ---
 id: snapshotviewios
 title: SnapshotViewIOS
-wip: true
 ---
+
+This component is no longer part of modern React Native /
+`rescript-react-native` 0.84 bindings.

@@ -4,183 +4,95 @@ title: Event
 officialDoc: https://github.com/facebook/react-native/blob/main/Libraries/Types/CoreEventTypes.js
 ---
 
-These are the types of objects returned in `Event` callbacks. Types are
-instances of `syntheticEvent<'a>` and `responderSyntheticEvent<'a>`.
+These are the types of objects returned in event callbacks. Concrete aliases
+(`layoutEvent`, `pressEvent`, …) are instances of `SyntheticEvent` /
+`ResponderSyntheticEvent` modules.
+
+`nullable<'a>` below is ReScript's stdlib nullable type.
 
 ## Parametrised Types
 
-### `syntheticEvent<'a>`
+### `SyntheticEvent`
 
 ```rescript
-type syntheticEvent<'a> = {
-  bubbles: Js.Nullable.t<bool>,
-  cancelable: Js.Nullable.t<bool>,
+type t = {
+  bubbles: nullable<bool>,
+  cancelable: nullable<bool>,
   currentTarget: float,
-  defaultPrevented: Js.Nullable.t<bool>,
+  defaultPrevented: nullable<bool>,
   dispatchConfig: registrationName,
-  eventPhase: Js.Nullable.t<float>,
-  isTrusted: Js.Nullable.t<bool>,
-  nativeEvent: T._payload,
-  target: Js.Nullable.t<float>,
+  eventPhase: nullable<float>,
+  isTrusted: nullable<bool>,
+  nativeEvent: 'payload,
+  target: nullable<float>,
   timeStamp: float,
-  _type: Js.Nullable.t<string>,
+  \"type": nullable<string>,
 }
 ```
 
-### `responderSyntheticEvent<'a>`
+Helpers such as `preventDefault`, `stopPropagation`, `persist`, etc. are
+available on the event value.
 
-`responderSyntheticEvent<'a>` adds the `touchHistory` key to
-`syntheticEvent<'a>`
+### `ResponderSyntheticEvent`
 
-```rescript
-type responderSyntheticEvent<'a> = {
-  bubbles: Js.Nullable.t<bool>,
-  cancelable: Js.Nullable.t<bool>,
-  currentTarget: float,
-  defaultPrevented: Js.Nullable.t<bool>,
-  dispatchConfig: registrationName,
-  eventPhase: Js.Nullable.t<float>,
-  isTrusted: Js.Nullable.t<bool>,
-  nativeEvent: T._payload,
-  target: Js.Nullable.t<float>,
-  timeStamp: float,
-  _type: Js.Nullable.t<string>,
-  touchHistory: touchHistory,
-}
-```
+Same fields as `SyntheticEvent`, plus `touchHistory`.
 
 ## Types
 
 ### `layoutEvent`
 
-```rescript
-type layoutEvent = syntheticEvent<layout>
-```
-
-where `layout` is defined as
-
-```rescript
-type layout = {
-  x: float,
-  y: float,
-  width: float,
-  height: float,
-}
-```
+`nativeEvent.layout` is a `Layout.rectangle` (`x`, `y`, `width`, `height`).
 
 ### `pressEvent`
 
-```rescript
-type pressEvent = responderSyntheticEvent<pressEventPayload>
-```
-
-where `pressEventPayload` is defined as
-
-```rescript
-type pressEventPayload = {
-  changedTouches: array(pressEventPayload),
-  force: float,
-  identifier: int,
-  locationX: float,
-  locationY: float,
-  pageX: float,
-  pageY: float,
-  target: Js.Nullable.t(float),
-  timestamp: float,
-  touches: array(pressEventPayload),
-}
-```
+Responder event whose payload includes `locationX` / `locationY`, `pageX` /
+`pageY`, `touches`, `changedTouches`, etc.
 
 ### `scrollEvent`
 
-```rescript
-type scrollEvent = syntheticEvent<scrollEventPayload>
-```
-
-where `scrollEventPayload` is defined as
+Payload uses shared layout types:
 
 ```rescript
-type scrollEventPayload = {
-  contentInset,
-  contentOffset,
-  contentSize: dimensions,
-  layoutMeasurement: dimensions,
-}
-```
-
-and `contentInset`, `contentOffset` and `dimensions` are defined as
-
-```rescript
-type contentInset = {
-  bottom: float,
-  left: float,
-  right: float,
-  top: float,
-}
-```
-
-```rescript
-type contentOffset = {
-  x: float,
-  y: float,
-}
-```
-
-```rescript
-type dimensions = {
-  height: float,
-  width: float,
+type payload = {
+  contentInset: Layout.insets,
+  contentOffset: Layout.point,
+  contentSize: Layout.size,
+  layoutMeasurement: Layout.size,
 }
 ```
 
 ### `switchChangeEvent`
 
 ```rescript
-type switchChangeEvent = syntheticEvent<switchChangePayload>
-```
-
-where `switchChangePayload` is defined as
-
-```rescript
-type switchChangePayload = {value: bool}
+type payload = {value: bool}
 ```
 
 ### `targetEvent`
 
 ```rescript
-type targetEvent = syntheticEvent<targetPayload>
-```
-
-where `targetPayload` is defined as
-
-```rescript
-type targetPayload = {target: int}
+type payload = {target: int}
 ```
 
 ### `textLayoutEvent`
 
 ```rescript
-type textLayoutEvent = syntheticEvent<textLayouts>
-```
-
-where `textLayouts` and `textLayout` are defined as
-
-```rescript
-type textLayouts = {lines: array(textLayout)}
-```
-
-and
-
-```rescript
-type textLayout = {
-  x: float,
-  y: float,
-  width: float,
-  height: float,
-  ascender: float, // verify
-  capHeight: float, // verify
-  descender: float, // verify
-  text: string,
-  xHeight: float // verify
+type payload = {
+  lines: array<{
+    ...Layout.rectangle,
+    ascender: float,
+    capHeight: float,
+    descender: float,
+    text: string,
+    xHeight: float,
+  }>,
 }
 ```
+
+### `pointerEvent`
+
+W3C pointer event payload (`pointerId`, `pointerType`, coordinates, modifiers,
+…). See also `View.pointerEventProps`.
+
+### `blurEvent` / `focusEvent`
+
+Payload: `{target: float}`.

@@ -8,7 +8,7 @@ officialDoc: https://reactnative.dev/docs/accessibilityinfo
 
 ### `announcementResult`
 
-Passed to the handler of the `` `announcementFinished `` event.
+Passed to the handler of the `#announcementFinished` event.
 
 ```rescript
 type announcementResult = {
@@ -22,131 +22,82 @@ is a `bool` indicating whether the announcement was successfully made.
 
 ## Methods
 
-### `isBoldTextEnabled`
+### Query methods
 
-_iOS only_
+Each of these returns `promise<bool>`:
 
-To query whether bold text is currently enabled. Promise resolves to `true` when
-bold text is enabled and `false` otherwise.
+| Method | Notes |
+| --- | --- |
+| `isBoldTextEnabled` | iOS |
+| `isGrayscaleEnabled` | iOS |
+| `isInvertColorsEnabled` | iOS |
+| `isReduceMotionEnabled` | |
+| `isReduceTransparencyEnabled` | iOS |
+| `isScreenReaderEnabled` | |
+| `isHighTextContrastEnabled` | |
+| `isDarkerSystemColorsEnabled` | |
+| `isAccessibilityServiceEnabled` | |
+| `prefersCrossFadeTransitions` | |
 
 ```rescript
-isBoldTextEnabled: unit => Js.Promise.t(bool)
+isScreenReaderEnabled: unit => promise<bool>
 ```
 
-### `isGrayscaleEnabled`
-
-_iOS only_
-
-To query whether grayscale is currently enabled. Promise resolves to `true` when
-grayscale is enabled and `false` otherwise.
+### `getRecommendedTimeoutMillis`
 
 ```rescript
-isGrayscaleEnabled: unit => Js.Promise.t(bool)
+getRecommendedTimeoutMillis: float => promise<float>
 ```
 
-### `isInvertColorsEnabled`
-
-_iOS only_
-
-To query whether invert colors is currently enabled. Promise resolves to `true`
-when invert colors is enabled and `false` otherwise.
+### `announceForAccessibility`
 
 ```rescript
-isInvertColorsEnabled: unit => Js.Promise.t(bool)
-```
-
-### `isReduceMotionEnabled`
-
-To query whether reduce motion is currently enabled. Promise resolves to `true`
-when reduce motion is enabled and `false` otherwise.
-
-```rescript
-isReduceMotionEnabled: unit => Js.Promise.t(bool)
-```
-
-### `isReduceTransparencyEnabled`
-
-_iOS only_
-
-To query whether reduce transparency is currently enabled. Promise resolves to
-`true` when reduce transparency is enabled and `false` otherwise.
-
-```rescript
-isReduceTransparencyEnabled: unit => Js.Promise.t(bool)
-```
-
-### `isScreenReaderEnabled`
-
-To query whether screen reader is currently enabled. Promise resolves to `true`
-when screen reader is enabled and `false` otherwise.
-
-```rescript
-isScreenReaderEnabled: unit => Js.Promise.t(bool)
+announceForAccessibility: string => unit
+announceForAccessibilityWithOptions: (string, {queue?: bool}) => unit
 ```
 
 ### `setAccessibilityFocus`
 
-To set accessibility focus to a React component, identified by its `nodeHandle`.
-On Android, this is equivalent to
-`UIManager.sendAccessibilityEvent(reactTag, UIManager.AccessibilityEventTypes.typeViewFocused)`
+@deprecated Prefer `sendAccessibilityEvent` with `#focus`.
 
 ```rescript
 setAccessibilityFocus: NativeTypes.nodeHandle => unit
 ```
 
-### `announceForAccessibility`
-
-To post a string to be announced by the screen reader.
+### `sendAccessibilityEvent`
 
 ```rescript
-announceForAccessibility: string => unit
+sendAccessibilityEvent: (
+  Ref.t<DOMAPI.element<'nativeElement>>,
+  [#click | #focus | #viewHoverEnter | #windowStateChange],
+) => unit
 ```
 
 ### `addEventListener`
 
-Add an event handler.
+Add an event handler. Returns an [`EventSubscription`](/docs/eventsubscription)
+— call `.remove()` to unsubscribe.
 
 ```rescript
 addEventListener: [
-    | #boldTextChanged(bool => unit)
-    | #grayscaleChanged(bool => unit)
-    | #invertColorsChanged(bool => unit)
-    | #reduceMotionChanged(bool => unit)
-    | #screenReaderChanged(bool => unit)
-    | #reduceTransparencyChanged(bool => unit)
-    | #announcementFinished(announcementResult => unit)
-  ] => unit
+  | #boldTextChanged(bool => unit)
+  | #grayscaleChanged(bool => unit)
+  | #invertColorsChanged(bool => unit)
+  | #reduceMotionChanged(bool => unit)
+  | #screenReaderChanged(bool => unit)
+  | #reduceTransparencyChanged(bool => unit)
+  | #highTextContrastChanged(bool => unit)
+  | #darkerSystemColorsChanged(bool => unit)
+  | #accessibilityServiceChanged(bool => unit)
+  | #announcementFinished(announcementResult => unit)
+] => EventSubscription.t
 ```
 
-Supported events:
-
-- `boldTextChanged(bool => unit)`: _iOS only_. Fires when state of the bold text
-  toggle changes. The argument to the event handler is a `bool` which is `true`
-  when bold text is enabled and `false` otherwise.
-- `grayscaleChanged(bool => unit)`: _iOS only_. Fires when state of the gray
-  scale toggle changes. The argument to the event handler is a `bool` which is
-  `true` when gray scale is enabled and `false` otherwise.
-- `invertColorsChanged(bool => unit)`: _iOS only_. Fires when state of the
-  invert colors toggle changes. The argument to the event handler is a `bool`
-  which is `true` when invert colors is enabled and `false` otherwise.
-- `reduceMotionChanged(bool => unit)`: Fires when state of the reduce motion
-  toggle changes. The argument to the event handler is a `bool` which is `true`
-  when reduce motion is enabled (or when "Transition Animation Scale" in
-  "Developer options" is "Animation off") and `false` otherwise.
-- `screenReaderChanged(bool => unit)`: Fires when state of the screen reader
-  changes. The argument to the event handler is a `bool` which is `true` when a
-  screen reader is enabled and `false` otherwise.
-- `reduceTransparencyChanged(bool => unit)`: _iOS only_. Fires when state of the
-  reduce transparency toggle changes. The argument to the event handler is a
-  `bool` which is `true` when reduce transparency is enabled and `false`
-  otherwise.
-- `announcementFinished(announcementResult => unit)`: _iOS only_. Fires when the
-  screen reader has finished making an announcement. The argument to the event
-  handler is of type [`announcementResult`](#announcementResult).
-
-### `removeEventListener`
-
-To remove an event handler.
-
-See [`addEventListener`](#addEventListener) for more details on supported
-events.
+```rescript
+React.useEffect0(() => {
+  let sub = AccessibilityInfo.addEventListener(#screenReaderChanged(enabled => {
+    Console.log(enabled)
+  }))
+  Some(() => sub->EventSubscription.remove)
+})
+```

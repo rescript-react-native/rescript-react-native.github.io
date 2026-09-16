@@ -19,15 +19,14 @@ You can read more about this [on the official Pressable documentation](https://r
 
 ```rescript
 open ReactNative
+open Style
 
 @react.component
 let make = () =>
   <Pressable
-    onPress={_ => Js.log("Pressed")}
-    style={({pressed}) => {
-      open Style
-      style(~backgroundColor=pressed ? "rgb(210, 230, 255)" : "white", ())
-    }}>
+    onPress={_ => Console.log("Pressed")}
+    style={({pressed}) =>
+      s({backgroundColor: pressed ? "rgb(210, 230, 255)" : "white"})}>
     {({pressed}) =>
       <Text> {(pressed ? "Pressed!" : "Press Me")->React.string} </Text>}
   </Pressable>

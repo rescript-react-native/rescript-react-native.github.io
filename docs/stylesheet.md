@@ -19,23 +19,22 @@ definitions.
 
 ### `create`
 
-Takes and returns `Js.t<'a>` objects, with `string` keys and `Style.t` values.
-Individual styles can be accessed using `##`, followed by the name specified as
-the key.
+Takes and returns an object with string keys and `Style.t` values.
+Individual styles can be accessed with `styles["name"]`.
 
-Note that using `Style.array` or `Style.list` to pass `array<Style.t>` or
-`list<Style.t>` is illegal within a `StyleSheet`, even those are valid `style`
-props for components. You may, howevever, use the [`flatten`](#flatten) method
-to convert `array<Style.t>` into a valid `Style.t` object.
+Note that using `Style.array` to pass `array<Style.t>` is illegal within a
+`StyleSheet`, even though arrays are valid `style` props for components. You
+may, however, use the [`flatten`](#flatten) method to convert `array<Style.t>`
+into a valid `Style.t` value.
 
 ```rescript
-create: Js.t<'a> => Js.t<'a>
+create: ({..} as 'a) => ({..} as 'a)
 ```
 
 ### `flatten`
 
 Takes an array of styles (of type `Style.t`) and returns a single style (also of
-type `Style.t`). Creates a `Style.t` object which is valid in a `StyleSheet`.
+type `Style.t`). Creates a `Style.t` value which is valid in a `StyleSheet`.
 
 ```rescript
 flatten: array<Style.t> => Style.t
@@ -91,23 +90,18 @@ Please also see the [example](/docs/style/#style-example) in documentation of th
 
 ```rescript
 open ReactNative
+open Style
 
-let borderStyle = {
-  open Style
-  style(~borderWidth=StyleSheet.hairlineWidth, ())
-}
+let borderStyle = s({borderWidth: StyleSheet.hairlineWidth})
 
-let styles = {
-  open Style
-  StyleSheet.create({
-    // style may be defined inline
-    "container": style(~flex=1., ~flexDirection=#column, ()),
-    "screen": style(~width=windowWidth->dp, ()),
-    // or already defined elsewhere
-    "borderStyle": borderStyle,
-    "overlay": StyleSheet.absoluteFill,
-  })
-}
+let styles = StyleSheet.create({
+  // style may be defined inline
+  "container": s({flex: 1., flexDirection: #column}),
+  "screen": s({width: windowWidth->dp}),
+  // or already defined elsewhere
+  "borderStyle": borderStyle,
+  "overlay": StyleSheet.absoluteFill,
+})
 
 let flatStyle = StyleSheet.flatten([styles["container"], styles["screen"]])
 ```

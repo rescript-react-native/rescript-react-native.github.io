@@ -19,12 +19,12 @@ see [`Event`](/docs/event/#pressevent)
 
 ### `gestureState`
 
-`gestureState` contains additional information on the state of the \_Gesture
-Responder System\_
+`gestureState` contains additional information on the state of the Gesture
+Responder System:
 
 ```rescript
 type gestureState = {
-  stateid: float,
+  stateID: float,
   moveX: float,
   moveY: float,
   x0: float,
@@ -39,37 +39,27 @@ type gestureState = {
 
 ### `t`
 
-`t` is the abstract type for a `PanResponder`, which can be created by means of
-the `create` method, given a `config` object
+Abstract type for a `PanResponder`, created with `create` from a `config`
+record.
 
 ### `config`
 
-`config` is the abstract type for a custom `PanResponder` configuration; it can
-be created by means of the `config` constructor
-
 ```rescript
-config:
-  (
-    ~onMoveShouldSetPanResponder: (Event.pressEvent, gestureState) => bool=?,
-    ~onMoveShouldSetPanResponderCapture: (Event.pressEvent, gestureState) =>
-                                         bool
-                                           =?,
-    ~onStartShouldSetPanResponder: (Event.pressEvent, gestureState) => bool=?,
-    ~onStartShouldSetPanResponderCapture: (Event.pressEvent, gestureState) =>
-                                          bool
-                                            =?,
-    ~onPanResponderReject: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderGrant: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderStart: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderEnd: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderRelease: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderMove: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderTerminate: (Event.pressEvent, gestureState) => unit=?,
-    ~onPanResponderTerminationRequest: (Event.pressEvent, gestureState) => bool
-                                         =?,
-    ~onShouldBlockNativeResponder: (Event.pressEvent, gestureState) => bool=?,
-    unit
-  ) => config
+type config = {
+  onMoveShouldSetPanResponder?: (Event.pressEvent, gestureState) => bool,
+  onMoveShouldSetPanResponderCapture?: (Event.pressEvent, gestureState) => bool,
+  onStartShouldSetPanResponder?: (Event.pressEvent, gestureState) => bool,
+  onStartShouldSetPanResponderCapture?: (Event.pressEvent, gestureState) => bool,
+  onPanResponderReject?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderGrant?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderStart?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderEnd?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderRelease?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderMove?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderTerminate?: (Event.pressEvent, gestureState) => unit,
+  onPanResponderTerminationRequest?: (Event.pressEvent, gestureState) => bool,
+  onShouldBlockNativeResponder?: (Event.pressEvent, gestureState) => bool,
+}
 ```
 
 ### `panHandlers`
@@ -216,9 +206,9 @@ onResponderEnd: panHandlers => callback(unit)
 
 ## Example
 
-As props spread is not possible with the ReScript JSX 3 syntax, each _Gesture
-Responder System_ callback needs to be separately specified, with the relevant
-value obtained by means of the associated getter.
+As props spread is not possible with ReScript JSX for arbitrary objects, each
+_Gesture Responder System_ callback needs to be separately specified, with the
+relevant value obtained by means of the associated getter.
 
 While props spread may not be available, copy-paste is probably supported by
 your editor...
@@ -252,31 +242,27 @@ Then, the custom `PanResponder` can be used as below:
 
 ```rescript
 open ReactNative
+open Style
 
 let windowHeight = Dimensions.get(#window).height
 let windowWidth = Dimensions.get(#window).width
 
-let containerStyle = {
-  open Style
-  style(
-    ~width=windowWidth->dp,
-    ~height=windowHeight->dp,
-    ~justifyContent=#center,
-    ~alignItems=#centerà
-    (),
-  )
-}
+let containerStyle = s({
+  width: windowWidth->dp,
+  height: windowHeight->dp,
+  justifyContent: #center,
+  alignItems: #center,
+})
 
-let config = PanResponder.config(
-  ~onMoveShouldSetPanResponder=(_e, _g) => true,
-  ~onPanResponderRelease=(_e, g) =>
-    g["dx"] > 0.
-      ? "You swiped right"->Js.Console.warn
-      : "You swiped left"->Js.Console.warn,
-  (),
-)
-
-let panResponder = PanResponder.create(config)
+let panResponder = PanResponder.create({
+  onMoveShouldSetPanResponder: (_e, _g) => true,
+  onPanResponderRelease: (_e, g) =>
+    if g.dx > 0. {
+      Console.warn("You swiped right")
+    } else {
+      Console.warn("You swiped left")
+    },
+})
 
 let panHandlers = panResponder->PanResponder.panHandlers
 

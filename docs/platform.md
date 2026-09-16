@@ -28,11 +28,10 @@ If you need an unsupported platform, you can use `Platform.unsafe(string)`.
 For conditional style depending on the platform, you can do the following:
 
 ```rescript
+open Style
+
 let styles = StyleSheet.create({
-  open Style
-  {
-    "wrapper": style(~width=pct(Platform.os == Platform.ios ? 100. : 200.), ()),
-  }
+  "wrapper": s({width: (Platform.os == Platform.ios ? 100. : 200.)->pct}),
 })
 ```
 
@@ -44,18 +43,18 @@ This feature isn't relevant with ReScript. Instead you can do the following:
 
 ```rescript
 open Style
-let styles = {
-  "wrapper": style(
-    ~width=switch Platform.os {
+
+let styles = StyleSheet.create({
+  "wrapper": s({
+    width: switch Platform.os {
     | os if os == Platform.ios => 100.
     | os if os == Platform.android => 200.
     | os if os == Platform.web => 250.
     | os if os == Platform.unsafe("windows") => 300.
     | _ => 150.
     }->pct,
-    (),
-  ),
-}->StyleSheet.create
+  }),
+})
 ```
 
 Also since spreading things in ReScript is not supported (because of the
