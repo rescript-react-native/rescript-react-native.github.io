@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkrescript_react_native_github_io||=[]).push([[8121],{8070(e){e.exports=JSON.parse('{"tags":[{"label":"hello","permalink":"/blog/tags/hello","count":2},{"label":"rescript","permalink":"/blog/tags/rescript","count":1},{"label":"reason","permalink":"/blog/tags/reason","count":1}]}')}}]);

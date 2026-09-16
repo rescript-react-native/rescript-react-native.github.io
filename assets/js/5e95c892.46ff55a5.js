@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkrescript_react_native_github_io||=[]).push([[9647],{7121(e,r,s){s.r(r),s.d(r,{default:()=>h});s(6540);var t=s(4164),a=s(7559),c=s(5500),i=s(2831),u=s(1732),n=s(4848);function h(e){return(0,n.jsx)(c.e3,{className:(0,t.A)(a.G.wrapper.docsPages),children:(0,n.jsx)(u.A,{children:(0,i.v)(e.route.routes)})})}}}]);
